@@ -8,11 +8,6 @@ const routes: Routes = [
     component: AppComponent,
     children: [
       {
-        path: '',
-        redirectTo: 'login',
-        pathMatch: 'full',
-      },
-      {
         path: 'login',
         loadChildren: () =>
           import('src/app/login/login.module').then((m) => m.LoginModule),
@@ -21,6 +16,11 @@ const routes: Routes = [
         path: 'home',
         loadChildren: () =>
           import('src/app/home/home.module').then((m) => m.HomeModule),
+      },
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
       },
     ],
   },

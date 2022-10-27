@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthenticationService } from './services/authentication.service';
 import { HttpClientModule } from '@angular/common/http';
-import { StorageService } from './services/storage.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
@@ -10,7 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
+import { CredentialStorageService } from './services/credential-storage.service';
 
 @NgModule({
   declarations: [NavBarComponent],
@@ -20,9 +20,9 @@ import { MatIconModule } from '@angular/material/icon'
     MatDividerModule,
     MatMenuModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
   ],
-  providers: [AuthenticationService, StorageService],
+  providers: [AuthenticationService, CredentialStorageService],
   exports: [
     NavBarComponent,
     MatInputModule,
@@ -30,7 +30,7 @@ import { MatIconModule } from '@angular/material/icon'
     MatCardModule,
     MatButtonModule,
     HttpClientModule,
-    MatIconModule
+    MatIconModule,
   ],
 })
 export class SharedModule {}

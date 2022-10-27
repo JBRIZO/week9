@@ -6,8 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-// import { AuthenticationService } from 'src/app/services/authentication.service';
-
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,7 +18,7 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    // private authService: AuthenticationService,
+    private authService: AuthenticationService,
     private router: Router
   ) {
     this.form = fb.group({
@@ -37,26 +36,25 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    console.log(this.form.valid);
+    // console.log(this.form.valid);
     if (this.form.valid) {
-      // this.login();
-      this.router.navigate(['/home']);
+      this.login();
+      // alert('submitted')
+      // this.router.navigate(['/home']);
     }
   }
 
-  // login() {
-  //   this.loginError = false
-  //   this.authService.login(this.form.value).subscribe(
-  //     (response: boolean) => {
-  //       if (response) {
-  //         this.router.navigate(['/home']);
-  //       }
-  //     },
-  //     (error: Error) => {
-  //       if (!error) {
-  //         this.loginError = true;
-  //       }
-  //     }
-  //   );
-  // }
+  login() {
+    this.loginError = false;
+    this.authService.login(this.form.value).subscribe(
+      (response: boolean) => {
+        if (response) {
+          this.router.navigate(['/home']);
+        }
+      },
+      (error: Error) => {
+        this.loginError = true;
+      }
+    );
+  }
 }

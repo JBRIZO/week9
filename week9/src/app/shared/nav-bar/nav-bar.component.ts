@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,7 +8,7 @@ import { StorageService } from '../services/storage.service';
 export class NavBarComponent implements OnInit {
   // @Input() currentProfile?: Profile;
 
-  constructor(private jwtService: StorageService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
