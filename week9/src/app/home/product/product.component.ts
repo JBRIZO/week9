@@ -9,4 +9,9 @@ export class ProductComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  error(){
+    alert("errro")
+  }
+
 }

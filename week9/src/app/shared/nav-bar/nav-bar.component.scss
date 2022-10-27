@@ -27,26 +27,45 @@
     }
   }
 
-  .user {
+  .profile-container {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 100%;
-    cursor: pointer;
+    gap: 8px;
 
-    img {
-      margin-left: 10px;
-      height: 60%;
-      width: auto;
+    .user {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 100%;
+      cursor: pointer;
+  
+      img {
+        margin-left: 10px;
+        height: 60%;
+        width: auto;
+      }
+  
+      p {
+        margin: 0;
+        padding: 0;
+      }
     }
 
-    p {
-      margin: 0;
-      padding: 0;
+    .cart {
+      width: 70px;
+      background-color: transparent;
+      border: none;
+      color: #ff4040;
+
+      &:hover {
+        background-color: #ff4040;
+        color: white;
+        cursor: pointer;
+      }
     }
   }
 }
 
+  
 .profile-modal {
   display: flex;
   flex-direction: row;

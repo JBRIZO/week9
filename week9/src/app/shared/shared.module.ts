@@ -20,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon'
     MatDividerModule,
     MatMenuModule,
     MatButtonModule,
+    MatIconModule
   ],
   providers: [AuthenticationService, StorageService],
   exports: [

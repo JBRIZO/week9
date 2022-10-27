@@ -1,22 +1,31 @@
 <nav class="navbar">
   <div class="brand">
-    <img src="./../../../assets/images/applaudo_logo.png" alt="" />
+    <img src="assets/images/applaudo_logo.png" alt="" />
   </div>
-  <div class="user" [matMenuTriggerFor]="loginMenu" #loginMenuTrigger>
-    <p>Profile</p>
-    <img src="./../../../assets/images/user-icon.png" />
-    <mat-menu #loginMenu="matMenu">
-      <div class="profile-modal">
-        <img src="./../../../assets/images/user-icon.png" class="profile-img" />
-        <div class="profile-details">
-          <p class="profile-name">Name</p>
-          <p class="profile-email">email</p>
-          <mat-divider></mat-divider>
-          <button mat-raised-button color="warn" (click)="logout()">
-            Log out
-          </button>
+  <div class="profile-container">
+    <div class="user" [matMenuTriggerFor]="loginMenu" #loginMenuTrigger>
+      <p>Profile</p>
+      <img src="assets/images/user-icon.png" />
+      <mat-menu #loginMenu="matMenu">
+        <div class="profile-modal">
+          <img src="assets/images/user-icon.png" class="profile-img" />
+          <div class="profile-details">
+            <p class="profile-name">Name</p>
+            <p class="profile-email">email</p>
+            <mat-divider></mat-divider>
+            <button mat-raised-button color="warn" (click)="logout()">
+              Log out
+            </button>
+          </div>
         </div>
-      </div>
-    </mat-menu>
+      </mat-menu>
+    </div>
+    <button class="cart">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+    <!-- <div class="cart">
+      <button>hola</button>
+    </div> -->
   </div>
+ 
 </nav>
