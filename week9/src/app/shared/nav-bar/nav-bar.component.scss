@@ -1,0 +1,90 @@
+.navbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 70px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-shadow: 0 4px 4px -4px grey;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  a {
+    text-decoration: none;
+  }
+
+  .brand {
+    display: flex;
+    max-height: 100%;
+    align-items: center;
+
+    img {
+      height: 30%;
+      width: auto;
+    }
+  }
+
+  .user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    cursor: pointer;
+
+    img {
+      margin-left: 10px;
+      height: 60%;
+      width: auto;
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.profile-modal {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-self: center;
+  padding: 6px;
+  gap: 10px;
+
+  .profile-img {
+    width: 55px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .profile-details {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    gap: 6px;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .profile-email {
+      color: #a8a8a8;
+    }
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .navbar {
+    .brand {
+      img {
+        height: 50%;
+      }
+    }
+  }
+}
