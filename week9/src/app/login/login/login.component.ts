@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { AuthenticationService } from '../shared/authentication.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

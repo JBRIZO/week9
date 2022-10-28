@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthenticationService } from './services/authentication.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MatDividerModule } from '@angular/material/divider';
@@ -13,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CredentialStorageService } from './services/credential-storage.service';
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { RouterModule } from '@angular/router';
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [NavBarComponent],
@@ -27,10 +27,10 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   providers: [
-    AuthenticationService,
     CredentialStorageService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
+    ProductService
   ],
   exports: [
     NavBarComponent,

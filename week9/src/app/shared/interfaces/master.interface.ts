@@ -1,6 +1,7 @@
 export interface Master {
     id: number;
     sku: string;
+    price: number;
     promotional_price: string;
     stock: number;
     weight: number | null;

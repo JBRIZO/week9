@@ -1,10 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
-import { Login } from '../interfaces/login.interface';
+import { Observable, throwError } from 'rxjs';
+import { Login } from 'src/app/shared/interfaces/login.interface';
 import { map, catchError } from 'rxjs/operators';
-import { CredentialStorageService } from './credential-storage.service';
-import { UserCredentials } from '../interfaces/usercredentials.interface';
+import { CredentialStorageService } from 'src/app/shared/services/credential-storage.service';
+import { UserCredentials } from 'src/app/shared/interfaces/usercredentials.interface';
 
 @Injectable()
 export class AuthenticationService {
@@ -13,7 +13,7 @@ export class AuthenticationService {
 
   constructor(
     private http: HttpClient,
-    private storageService: CredentialStorageService
+    private storageService: CredentialStorageService,
   ) {}
 
   login(loginCredentials: Login): Observable<boolean> {
