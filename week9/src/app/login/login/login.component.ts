@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { CredentialStorageService } from 'src/app/shared/services/credential-storage.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,9 +20,10 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private storageService : CredentialStorageService
   ) {
-    this.form = fb.group({
+    this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
@@ -36,11 +38,8 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    // console.log(this.form.valid);
     if (this.form.valid) {
       this.login();
-      // alert('submitted')
-      // this.router.navigate(['/home']);
     }
   }
 
