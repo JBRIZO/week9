@@ -23,4 +23,9 @@ export class CredentialStorageService {
     return localStorage.getItem(this.tokenItemName)
   }
 
+  signOut() : void {
+    localStorage.removeItem(this.tokenItemName)
+    localStorage.removeItem(this.userItemName)
+  }
+
 }

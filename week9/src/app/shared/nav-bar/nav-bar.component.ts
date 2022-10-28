@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CredentialStorageService } from '../services/credential-storage.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,14 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
-  // @Input() currentProfile?: Profile;
 
-  constructor() {}
+  constructor(private credentialStorageService : CredentialStorageService, private router : Router) {}
 
   ngOnInit(): void {}
 
   logout() {
-    // this.jwtService.signOut();
-    // this.router.navigate(['/login']);
+    this.credentialStorageService.signOut();
+    this.router.navigate(['/login']);
   }
 }
