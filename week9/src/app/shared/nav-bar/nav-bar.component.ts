@@ -8,8 +8,10 @@ import { CredentialStorageService } from '../services/credential-storage.service
   styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
-
-  constructor(private credentialStorageService : CredentialStorageService, private router : Router) {}
+  constructor(
+    private credentialStorageService: CredentialStorageService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 

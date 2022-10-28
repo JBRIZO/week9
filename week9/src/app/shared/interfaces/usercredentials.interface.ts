@@ -1,5 +1,5 @@
-import { User } from "./user.interface";
+import { User } from './user.interface';
 
 export interface UserCredentials {
-    data: {token : string ,  user: User }   
+  data: { token: string; user: User };
 }

@@ -6,11 +6,16 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { CredentialStorageService } from '../shared/services/credential-storage.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class HomeGuard implements CanActivate {
+  constructor(
+    private router: Router,
+    private credentialStorageService: CredentialStorageService
+  ) {}
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -19,6 +24,9 @@ export class HomeGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return true;
+    if (!this.credentialStorageService.isLoggedIn()) {
+      this.router.navigate(['/login']);
+    }
+    return this.credentialStorageService.isLoggedIn();
   }
 }

@@ -6,9 +6,11 @@ import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductComponent } from './product/product.component';
+import { HomeGuard } from './home.guard';
 
 @NgModule({
   declarations: [HomeComponent, ProductListComponent, ProductComponent],
   imports: [CommonModule, HomeRoutingModule, SharedModule],
+  providers: [HomeGuard],
 })
 export class HomeModule {}

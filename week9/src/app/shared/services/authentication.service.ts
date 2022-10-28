@@ -11,7 +11,10 @@ export class AuthenticationService {
   private readonly url =
     'https://trainee-program-api-staging.applaudostudios.com/api/v1';
 
-  constructor(private http: HttpClient, private storageService: CredentialStorageService) {}
+  constructor(
+    private http: HttpClient,
+    private storageService: CredentialStorageService
+  ) {}
 
   login(loginCredentials: Login): Observable<boolean> {
     return this.http
@@ -20,7 +23,7 @@ export class AuthenticationService {
       })
       .pipe(
         map((response: UserCredentials) => {
-          this.storageService.saveCredentials(response)
+          this.storageService.saveCredentials(response);
           return true;
         }),
         catchError((response: HttpErrorResponse) => {
