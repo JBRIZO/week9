@@ -1,0 +1,61 @@
+.container {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: calc(100vh - 70px);
+    background-image: url('/assets/images/background-login.png');
+    background-size: cover;
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+        max-width: 1500px;
+        margin-top: 20px;
+
+        .cart-card {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            .price-label {
+                text-align: right;
+                margin-right: 5px;
+                font-size: 16px;
+            }
+
+            mat-divider {
+                width: 100%;
+            }
+
+            mat-card-actions {
+                display: flex;
+                flex-direction: column;
+
+                .subtotal {
+                    display: flex;
+                    align-self:flex-end;
+                    align-items: center;
+                    justify-content: right;
+                    gap: 5px;
+                    width: 50%;
+    
+                    h3 {
+                        margin: 0;
+                    }
+    
+                    p {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.price {
+    font-weight: 600;
+    font-size: 20px;
+}

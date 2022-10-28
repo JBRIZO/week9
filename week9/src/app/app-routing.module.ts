@@ -18,6 +18,11 @@ const routes: Routes = [
           import('src/app/home/home.module').then((m) => m.HomeModule),
       },
       {
+        path: 'cart',
+        loadChildren: () =>
+          import('src/app/cart/cart.module').then((m) => m.CartModule),
+      },
+      {
         path: '',
         redirectTo: 'login',
         pathMatch: 'full',

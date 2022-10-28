@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ResolvedReflectiveFactory } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeGuard } from './home.guard';
 import { HomeComponent } from './home/home.component';
@@ -13,18 +13,18 @@ const routes: Routes = [
     children: [
       {
         path: 'products/:productId',
-        component: ProductComponent,
+        component: ProductComponent
       },
       {
         path: 'products',
-        component: ProductListComponent,
+        component: ProductListComponent
       },
       {
         path: '',
         redirectTo: 'products',
       },
     ],
-  },
+  }
 ];
 
 @NgModule({

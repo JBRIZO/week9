@@ -1,0 +1,40 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .detail-item {
+        display: flex;
+        flex-direction: row;
+        height: 150px;
+
+        img {
+            width: 250px;
+            object-fit: contain;
+        }
+
+        .detail-data {
+            width: 100%;
+        }
+        
+        mat-divider {
+            width: 100%;
+        }
+
+        .product-name {
+            font-weight: 500;
+        }
+
+        .price {
+            font-weight: 600;
+            font-size: 20px;
+        }
+    }
+}
+
+.row { 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between
+}
