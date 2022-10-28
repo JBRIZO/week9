@@ -4,14 +4,14 @@
   </div>
   <div class="profile-container">
     <div class="user" [matMenuTriggerFor]="loginMenu" #loginMenuTrigger>
-      <p>Profile</p>
+      <p>{{user?.name}}</p>
       <img src="assets/images/user-icon.png" />
       <mat-menu #loginMenu="matMenu">
         <div class="profile-modal">
           <img src="assets/images/user-icon.png" class="profile-img" />
           <div class="profile-details">
-            <p class="profile-name">Name</p>
-            <p class="profile-email">email</p>
+            <p class="profile-name">{{user?.name}}</p>
+            <p class="profile-email">{{user?.email}}</p>
             <mat-divider></mat-divider>
             <button mat-raised-button color="warn" (click)="logout()">
               Log out

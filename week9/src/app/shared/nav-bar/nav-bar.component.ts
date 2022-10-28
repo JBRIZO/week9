@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../interfaces/user.interface';
 import { CredentialStorageService } from '../services/credential-storage.service';
 
 @Component({
@@ -8,12 +9,16 @@ import { CredentialStorageService } from '../services/credential-storage.service
   styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
+  user? : User
+
   constructor(
     private credentialStorageService: CredentialStorageService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.user = this.credentialStorageService.getStoredUser()!
+  }
 
   logout() {
     this.credentialStorageService.signOut();
