@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CredentialStorageService } from './services/credential-storage.service';
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [NavBarComponent],
@@ -23,6 +24,7 @@ import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
     MatButtonModule,
     MatIconModule,
     JwtModule,
+    RouterModule
   ],
   providers: [
     AuthenticationService,
@@ -39,6 +41,8 @@ import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
     HttpClientModule,
     MatIconModule,
     JwtModule,
+    RouterModule,
+    MatDividerModule
   ],
 })
 export class SharedModule {}

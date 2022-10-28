@@ -22,12 +22,21 @@
 
       img {
         width: 200px;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
 
       h2 {
         padding: 0;
         margin: 0;
         font-weight: 600;
+
+        &:hover {
+          cursor: pointer;
+          color: #a8a8a8;
+        }
       }
 
       .description {
