@@ -9,7 +9,7 @@ import { CredentialStorageService } from '../services/credential-storage.service
   styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
-  user? : User
+  user?: User;
 
   constructor(
     private credentialStorageService: CredentialStorageService,
@@ -17,7 +17,7 @@ export class NavBarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.user = this.credentialStorageService.getStoredUser()!
+    this.user = this.credentialStorageService.getStoredUser()!;
   }
 
   logout() {

@@ -13,18 +13,18 @@ const routes: Routes = [
     children: [
       {
         path: 'products/:productId',
-        component: ProductComponent
+        component: ProductComponent,
       },
       {
         path: 'products',
-        component: ProductListComponent
+        component: ProductListComponent,
       },
       {
         path: '',
         redirectTo: 'products',
       },
     ],
-  }
+  },
 ];
 
 @NgModule({

@@ -3,16 +3,11 @@ import {
   ActionReducerMap,
   createFeatureSelector,
   createSelector,
-  MetaReducer
+  MetaReducer,
 } from '@ngrx/store';
 
 export const loginFeatureKey = 'login';
 
-export interface LoginState {
+export interface LoginState {}
 
-}
-
-export const reducers: ActionReducerMap<LoginState> = {
-
-};
-
+export const reducers: ActionReducerMap<LoginState> = {};

@@ -1,6 +1,6 @@
-import { Category } from "./category.interface";
-import { Image } from "./image.interface";
-import { Master } from "./master.interface";
+import { Category } from './category.interface';
+import { Image } from './image.interface';
+import { Master } from './master.interface';
 
 export interface Product {
   id: number;
@@ -14,5 +14,5 @@ export interface Product {
   published_at: string;
   master?: Master;
   category?: Category;
-  image? : Image
+  image?: Image;
 }

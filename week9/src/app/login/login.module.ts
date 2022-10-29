@@ -11,7 +11,12 @@ import * as fromLogin from './reducers';
 
 @NgModule({
   declarations: [LoginComponent],
-  imports: [CommonModule, LoginRoutingModule, SharedModule, StoreModule.forFeature(fromLogin.loginFeatureKey, fromLogin.reducers)],
+  imports: [
+    CommonModule,
+    LoginRoutingModule,
+    SharedModule,
+    StoreModule.forFeature(fromLogin.loginFeatureKey, fromLogin.reducers),
+  ],
   providers: [LoginGuard, AuthenticationService],
 })
 export class LoginModule {}

@@ -9,12 +9,19 @@ import { ProductComponent } from './product/product.component';
 import { HomeGuard } from './home.guard';
 import { StoreModule } from '@ngrx/store';
 import * as fromHome from './reducers';
-import {MatPaginatorModule} from '@angular/material/paginator';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [HomeComponent, ProductListComponent, ProductComponent],
-  imports: [CommonModule, HomeRoutingModule, SharedModule, StoreModule.forFeature(fromHome.homeFeatureKey, fromHome.reducers), MatPaginatorModule],
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    SharedModule,
+    StoreModule.forFeature(fromHome.homeFeatureKey, fromHome.reducers),
+    MatPaginatorModule,
+    MatCheckboxModule,
+  ],
   providers: [HomeGuard],
 })
 export class HomeModule {}

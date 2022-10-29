@@ -15,7 +15,7 @@ import { AuthenticationService } from '../shared/authentication.service';
 export class LoginComponent {
   form!: FormGroup;
   loginError = false;
-  loading = false
+  loading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -44,7 +44,7 @@ export class LoginComponent {
 
   login() {
     this.loginError = false;
-    this.loading = true
+    this.loading = true;
     this.authService.login(this.form.value).subscribe(
       (response: boolean) => {
         if (response) {
@@ -53,8 +53,8 @@ export class LoginComponent {
       },
       (error: Error) => {
         this.loginError = true;
-        this.loading = false
-      },
+        this.loading = false;
+      }
     );
   }
 }

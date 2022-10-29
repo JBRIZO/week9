@@ -7,12 +7,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
+  test = '';
 
-  test = ''
-
-  constructor(private route : ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.test = this.route.snapshot.paramMap.get('productId')!
+    this.test = this.route.snapshot.paramMap.get('productId')!;
   }
 }

@@ -13,7 +13,7 @@ export class AuthenticationService {
 
   constructor(
     private http: HttpClient,
-    private storageService: CredentialStorageService,
+    private storageService: CredentialStorageService
   ) {}
 
   login(loginCredentials: Login): Observable<boolean> {
