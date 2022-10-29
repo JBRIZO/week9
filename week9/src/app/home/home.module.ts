@@ -11,6 +11,7 @@ import { StoreModule } from '@ngrx/store';
 import * as fromHome from './reducers';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [HomeComponent, ProductListComponent, ProductComponent],
@@ -21,6 +22,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     StoreModule.forFeature(fromHome.homeFeatureKey, fromHome.reducers),
     MatPaginatorModule,
     MatCheckboxModule,
+    FormsModule,
   ],
   providers: [HomeGuard],
 })

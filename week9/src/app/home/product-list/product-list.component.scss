@@ -37,12 +37,54 @@
         h3 {
           font-weight: 600;
         }
+
+        .category {
+          label {
+            color: #a8a8a8;
+            cursor: pointer;
+          }
+
+          input[type="radio"] {
+            display: none;
+
+            &:checked + .category-label {
+              color: black;
+              font-weight: 500;
+            }
+          }
+        }
       }
 
       .products-container {
         display: flex;
         flex-direction: column;
         width: 100%;
+
+        .search-bar {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-end;
+          height: 30px;
+
+          input[type="text"] {
+            margin-left: 5px;
+            height: 30px;
+            border: #a8a8a8 solid 1px;
+            border-right: none;
+            border-radius: 2px;
+          }
+
+          button {
+            display: flex;
+            align-items: center;
+            background-color: transparent;
+            border: #a8a8a8 solid 1px;
+            border-left: none;
+            height: 100%;
+            cursor: pointer;
+          }
+        }
 
         .grid-container {
           display: grid;
@@ -58,7 +100,6 @@
               display: flex;
               flex-direction: column;
               align-items: center;
-              // position: relative;
 
               p {
                 padding: 0;

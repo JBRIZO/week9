@@ -1,9 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Product } from '../interfaces/product.interface';
 import { Observable } from 'rxjs';
 import { ProductList } from '../interfaces/productlist.interface';
-import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ProductService {
@@ -12,9 +10,18 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts(page: number = 1, size: number = 20): Observable<ProductList> {
+  getProducts(
+    page: number = 1,
+    size: number = 20,
+    name: string = '',
+    categoryId: number | null = null
+  ): Observable<ProductList> {
     return this.http.get<ProductList>(
-      `${this.url}?include=image_attachment.blob,master&[page][number]=${page}&[page][size]=${size}`
+      `${
+        this.url
+      }?include=image_attachment.blob,master&[page][number]=${page}&[page][size]=${size}&[filter][name_start]=${name}&[filter][category_id_eq]=${
+        categoryId === null ? '' : categoryId
+      }`
     );
   }
 }

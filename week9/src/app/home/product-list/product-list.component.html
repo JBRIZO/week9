@@ -1,21 +1,46 @@
 <div class="container">
   <div class="wrapper">
-    <h1>List of Products</h1>
     <div class="spinner-container" *ngIf="loadingProducts || loadingCategories">
       <mat-spinner></mat-spinner>
     </div>
     <div class="products-view" *ngIf="!loadingProducts">
-      <!-- <div class="row">
-        <input type="text">
-        <button></button>
-      </div> -->
       <div class="categories-container">
         <h3>Categories</h3>
-        <mat-checkbox *ngFor="let category of categories?.data">{{
-          category.name
-        }}</mat-checkbox>
+        <div class="category">
+          <input
+            type="radio"
+            [(ngModel)]="selectedCategoryFilter"
+            name="category"
+            id="all"
+            [value]="null"
+            (change)="getProducts()"
+            checked
+          />
+          <label for="all" class="category-label">All</label>
+        </div>
+        <div class="category" *ngFor="let category of categories?.data">
+          <input
+            type="radio"
+            [(ngModel)]="selectedCategoryFilter"
+            name="category"
+            [id]="category.id"
+            [value]="category.id"
+            (change)="getProducts()"
+          />
+          <label [for]="category.id" class="category-label">{{
+            category.name
+          }}</label>
+        </div>
       </div>
       <div class="products-container">
+        <h1>List of Products</h1>
+        <div class="search-bar">
+          <label for="nameSearch">Search by name:</label>
+          <input type="text" #name id="nameSearch" />
+          <button (click)="searchByName(name.value)">
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
         <div class="grid-container">
           <div class="grid-item" *ngFor="let product of productList.data">
             <div class="product-list-item">

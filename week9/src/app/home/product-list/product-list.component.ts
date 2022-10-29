@@ -22,6 +22,8 @@ export class ProductListComponent implements OnInit {
   categories?: CategoryList;
   loadingCategories = true;
 
+  selectedCategoryFilter?: number | null = null;
+
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService
@@ -32,9 +34,14 @@ export class ProductListComponent implements OnInit {
     this.getCategories();
   }
 
-  getProducts(): void {
+  getProducts(nameSearched?: string): void {
     this.productService
-      .getProducts(this.currentPage + 1, this.pageSize)
+      .getProducts(
+        this.currentPage + 1,
+        this.pageSize,
+        nameSearched,
+        this.selectedCategoryFilter!
+      )
       .subscribe(
         (response: ProductList) => {
           this.productList = response;
@@ -64,5 +71,9 @@ export class ProductListComponent implements OnInit {
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
     this.getProducts();
+  }
+
+  searchByName(nameSearched: string) {
+    this.getProducts(nameSearched);
   }
 }
