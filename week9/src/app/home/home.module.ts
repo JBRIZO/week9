@@ -9,11 +9,12 @@ import { ProductComponent } from './product/product.component';
 import { HomeGuard } from './home.guard';
 import { StoreModule } from '@ngrx/store';
 import * as fromHome from './reducers';
-import  { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 @NgModule({
   declarations: [HomeComponent, ProductListComponent, ProductComponent],
-  imports: [CommonModule, HomeRoutingModule, SharedModule, StoreModule.forFeature(fromHome.homeFeatureKey, fromHome.reducers), MatProgressSpinnerModule],
+  imports: [CommonModule, HomeRoutingModule, SharedModule, StoreModule.forFeature(fromHome.homeFeatureKey, fromHome.reducers), MatPaginatorModule],
   providers: [HomeGuard],
 })
 export class HomeModule {}

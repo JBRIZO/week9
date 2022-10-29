@@ -44,7 +44,7 @@
                 ? 'Please fill all the required fields as indicated.'
                 : 'Login'
             "
-            [disabled]="form.invalid"
+            [disabled]="form.invalid || loading"
           >
             Login
           </button>

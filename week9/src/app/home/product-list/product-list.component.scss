@@ -18,11 +18,9 @@
     padding: 15px;
   
     .grid-item {
-      height: 200px;
-  
       .product-list-item {
         width: 100%;
-        height: 200px;
+        max-height: 200px;
         display: flex;
         flex-direction: column;
         align-items: center;

@@ -13,6 +13,7 @@ import { CredentialStorageService } from './services/credential-storage.service'
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { RouterModule } from '@angular/router';
 import { ProductService } from './services/product.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
 @NgModule({
   declarations: [NavBarComponent],
@@ -42,7 +43,8 @@ import { ProductService } from './services/product.service';
     MatIconModule,
     JwtModule,
     RouterModule,
-    MatDividerModule
+    MatDividerModule,
+    MatProgressSpinnerModule
   ],
 })
 export class SharedModule {}

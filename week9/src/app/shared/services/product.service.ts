@@ -12,7 +12,7 @@ export class ProductService {
 
   constructor(private http : HttpClient) { }
 
-  getProducts() : Observable<ProductList> {
-    return this.http.get<ProductList>(`${this.url}?include=image_attachment.blob,master`)
+  getProducts(page : number = 1, size : number = 20) : Observable<ProductList> {
+    return this.http.get<ProductList>(`${this.url}?include=image_attachment.blob,master&[page][number]=${page}&[page][size]=${size}`)
   }
 }
