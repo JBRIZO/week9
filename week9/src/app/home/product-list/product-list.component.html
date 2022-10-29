@@ -44,11 +44,12 @@
         <div class="grid-container">
           <div class="grid-item" *ngFor="let product of productList.data">
             <div class="product-list-item">
-              <!-- <img
+              <img
                 [src]="product.image?.url"
                 [alt]="product.name"
                 [routerLink]="['/home/products', product.slug]"
-              /> -->
+                onerror="this.src='assets/images/image-not-found.png'"
+              />
               <h2 [routerLink]="['/home/products', product.slug]">
                 {{ product.name }}
               </h2>
