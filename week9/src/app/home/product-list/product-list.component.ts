@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { CategoryList } from 'src/app/shared/interfaces/categorylist.interface';
 import { ProductList } from 'src/app/shared/interfaces/productlist.interface';
+import { CategoryService } from 'src/app/shared/services/category.service';
 import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
@@ -12,15 +14,22 @@ export class ProductListComponent implements OnInit {
   totalRows = 0;
   pageSize = 5;
   currentPage = 0;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
+  pageSizeOptions: number[] = [5, 10, 25];
 
   productList!: ProductList;
-  loading = true;
+  loadingProducts = true;
 
-  constructor(private productService: ProductService) {}
+  categories?: CategoryList;
+  loadingCategories = true;
+
+  constructor(
+    private productService: ProductService,
+    private categoryService: CategoryService
+  ) {}
 
   ngOnInit(): void {
     this.getProducts();
+    this.getCategories();
   }
 
   getProducts(): void {
@@ -34,13 +43,24 @@ export class ProductListComponent implements OnInit {
         },
         () => {},
         () => {
-          this.loading = false;
+          this.loadingProducts = false;
         }
       );
   }
 
+  getCategories(): void {
+    this.categoryService.getCategories().subscribe(
+      (response) => {
+        this.categories = response;
+      },
+      () => {},
+      () => {
+        this.loadingCategories = false;
+      }
+    );
+  }
+
   pageChanged(event: PageEvent) {
-    console.log({ event });
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
     this.getProducts();
