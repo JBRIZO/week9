@@ -1,0 +1,21 @@
+<div class="like-controls">
+    <mat-progress-bar
+      mode="determinate"
+      value="{{
+        (product.likes_up_count / product.likes_count) * 100
+      }}"
+    ></mat-progress-bar>
+    <div class="like-buttons">
+      <label
+        ><mat-icon class="like-button"
+          >thumb_up_alt_outline</mat-icon
+        >{{ product.likes_up_count }}</label
+      >
+      <label
+        >{{ product.likes_down_count
+        }}<mat-icon class="dislike-button"
+          >thumb_down_alt</mat-icon
+        ></label
+      >
+    </div>
+  </div>

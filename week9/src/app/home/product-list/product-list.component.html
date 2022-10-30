@@ -50,6 +50,7 @@
                 [routerLink]="['/home/products', product.slug]"
                 onerror="this.src='assets/images/image-not-found.png'"
               />
+              <app-like-controls [product]="product"></app-like-controls>
               <h2 [routerLink]="['/home/products', product.slug]">
                 {{ product.name }}
               </h2>
@@ -66,10 +67,6 @@
               >
                 Add to cart <mat-icon>add_shopping_cart</mat-icon>
               </button>
-              <div class="like-controls">
-                <mat-icon>thumb_up_alt_outline</mat-icon>
-                <mat-icon>thumb_down_alt</mat-icon>
-              </div>
             </div>
           </div>
         </div>

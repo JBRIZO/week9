@@ -24,7 +24,7 @@ export class CartDetailsListComponent implements OnInit {
         console.log(error);
       },
       () => {
-        console.log('Completed')
+        console.log('Completed');
       }
     );
   }

@@ -153,11 +153,8 @@
                 }
               }
 
-              .like-controls {
-                position: relative;
-                display: flex;
+              app-like-controls {
                 width: 100%;
-                justify-content: space-between;
               }
             }
           }

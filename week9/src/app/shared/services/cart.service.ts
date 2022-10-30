@@ -11,36 +11,28 @@ export class CartService {
   private readonly url =
     'https://trainee-program-api-staging.applaudostudios.com/api/v1/cart';
 
-
-  constructor(
-    private http: HttpClient
-  ) {}
+  constructor(private http: HttpClient) {}
 
   getCart(): Observable<Cart> {
-    return this.http
-      .get<{ data: Cart }>(this.url)
-      .pipe(
-        map((response) => {
-          return response.data;
-        })
-      );
+    return this.http.get<{ data: Cart }>(this.url).pipe(
+      map((response) => {
+        return response.data;
+      })
+    );
   }
 
   addItem(itemId: number, quantity: number): Observable<boolean> {
     return this.http
-      .post<{ data: Cart }>(
-        this.url,
-        {
-          data: {
-            items: [
-              {
-                product_variant_id: itemId,
-                quantity: quantity,
-              },
-            ],
-          },
-        }
-      )
+      .post<{ data: Cart }>(this.url, {
+        data: {
+          items: [
+            {
+              product_variant_id: itemId,
+              quantity: quantity,
+            },
+          ],
+        },
+      })
       .pipe(
         map((response) => {
           return response ? true : false;

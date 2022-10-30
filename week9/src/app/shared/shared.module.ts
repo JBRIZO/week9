@@ -19,10 +19,14 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { CartService } from './services/cart.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
-import { AuthInterceptor } from '../helpers/auth.interceptor';
+import { AuthInterceptor } from './helpers/auth.interceptor';
+import { LikesService } from './services/likes.service';
+import { LikeControlsComponent } from './like-controls/like-controls.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 
 @NgModule({
-  declarations: [NavBarComponent],
+  declarations: [NavBarComponent, LikeControlsComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -34,6 +38,7 @@ import { AuthInterceptor } from '../helpers/auth.interceptor';
     RouterModule,
     MatBadgeModule,
     MatSnackBarModule,
+    MatProgressBarModule
   ],
   providers: [
     CredentialStorageService,
@@ -43,8 +48,11 @@ import { AuthInterceptor } from '../helpers/auth.interceptor';
     CategoryService,
     CartService,
     {
-      provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
-    }
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    LikesService,
   ],
   exports: [
     NavBarComponent,
@@ -61,6 +69,7 @@ import { AuthInterceptor } from '../helpers/auth.interceptor';
     MatBadgeModule,
     MatSnackBarModule,
     FormsModule,
+    LikeControlsComponent
   ],
 })
 export class SharedModule {}
