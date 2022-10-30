@@ -15,6 +15,8 @@ import { RouterModule } from '@angular/router';
 import { ProductService } from './services/product.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CategoryService } from './services/category.service';
+import { MatBadgeModule } from '@angular/material/badge';
+import { CartService } from './services/cart.service';
 
 @NgModule({
   declarations: [NavBarComponent],
@@ -27,6 +29,7 @@ import { CategoryService } from './services/category.service';
     MatIconModule,
     JwtModule,
     RouterModule,
+    MatBadgeModule,
   ],
   providers: [
     CredentialStorageService,
@@ -34,6 +37,7 @@ import { CategoryService } from './services/category.service';
     JwtHelperService,
     ProductService,
     CategoryService,
+    CartService,
   ],
   exports: [
     NavBarComponent,
@@ -47,6 +51,7 @@ import { CategoryService } from './services/category.service';
     RouterModule,
     MatDividerModule,
     MatProgressSpinnerModule,
+    MatBadgeModule,
   ],
 })
 export class SharedModule {}

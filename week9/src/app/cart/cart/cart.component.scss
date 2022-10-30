@@ -8,6 +8,14 @@
   background-image: url("/assets/images/background-login.png");
   background-size: cover;
 
+  .spinner-container {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 70px);
+    align-items: center;
+    justify-content: center;
+  }
+
   .wrapper {
     display: flex;
     flex-direction: column;

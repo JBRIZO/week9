@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Cart } from 'src/app/shared/interfaces/cart.interface';
+import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -6,7 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  constructor() {}
+  cart!: Cart;
 
-  ngOnInit(): void {}
+  loading = true;
+
+  constructor(private cartService: CartService) {}
+
+  ngOnInit(): void {
+    this.getCart();
+  }
+
+  getCart(): void {
+    this.cartService.getCart().subscribe(
+      (response) => {
+        this.cart = response;
+      },
+      () => {},
+      () => {
+        this.loading = false;
+      }
+    );
+  }
 }

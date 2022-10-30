@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product.interface';
 import { ProductList } from '../interfaces/productlist.interface';
-import { map } from 'rxjs/operators'
+import { map } from 'rxjs/operators';
 import { Meta } from '@angular/platform-browser';
 import { Pagination } from '../interfaces/pagination.interface';
 
@@ -29,11 +29,15 @@ export class ProductService {
     );
   }
 
-  getProduct(productSlug : string) : Observable<Product> {
-    return this.http.get<{data: Product, meta: Pagination}>(`${this.url}/${productSlug}?include=master,category,image_attachment.blob`).pipe(
-      map(response=> {
-        return response.data
-      })
-    )
+  getProduct(productSlug: string): Observable<Product> {
+    return this.http
+      .get<{ data: Product; meta: Pagination }>(
+        `${this.url}/${productSlug}?include=master,category,image_attachment.blob`
+      )
+      .pipe(
+        map((response) => {
+          return response.data;
+        })
+      );
   }
 }
