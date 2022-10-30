@@ -17,6 +17,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CategoryService } from './services/category.service';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CartService } from './services/cart.service';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [NavBarComponent],
@@ -30,6 +32,7 @@ import { CartService } from './services/cart.service';
     JwtModule,
     RouterModule,
     MatBadgeModule,
+    MatSnackBarModule
   ],
   providers: [
     CredentialStorageService,
@@ -52,6 +55,7 @@ import { CartService } from './services/cart.service';
     MatDividerModule,
     MatProgressSpinnerModule,
     MatBadgeModule,
+    MatSnackBarModule
   ],
 })
 export class SharedModule {}

@@ -32,16 +32,18 @@ export class CartService {
       );
   }
 
-  addItem(item: CartItem): Observable<boolean> {
+  addItem(itemId : number, quantity: number): Observable<boolean> {
     return this.http
       .post<{ data: Cart }>(
         this.url,
         {
           data: {
-            items: {
-              product_variant_id: item.id,
-              quantity: item.quantity,
-            },
+            items: [
+              {
+                product_variant_id: itemId,
+                quantity: quantity,
+              }
+            ],
           },
         },
         {

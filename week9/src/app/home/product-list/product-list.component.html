@@ -37,7 +37,7 @@
         <div class="search-bar">
           <label for="nameSearch">Search by name:</label>
           <input type="text" #name id="nameSearch" />
-          <button (click)="searchByName(name.value)">
+          <button (click)="searchByName(name.value)" class="search-button">
             <mat-icon>search</mat-icon>
           </button>
         </div>
@@ -57,7 +57,7 @@
               <p class="price">
                 Price: $ {{ product.master!.price | number: "1.2" }}
               </p>
-              <button mat-raised-button color="primary">
+              <button mat-raised-button color="primary" (click)="addItemToCart(product.master!.id)" [disabled]="product.master?.stock === 0" [class.not-available]="product.master?.stock === 0">
                 Add to cart <mat-icon>add_shopping_cart</mat-icon>
               </button>
               <div class="like-controls">

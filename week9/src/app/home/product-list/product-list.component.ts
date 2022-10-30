@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CategoryList } from 'src/app/shared/interfaces/categorylist.interface';
 import { ProductList } from 'src/app/shared/interfaces/productlist.interface';
+import { CartService } from 'src/app/shared/services/cart.service';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { ProductService } from 'src/app/shared/services/product.service';
 
@@ -26,7 +28,9 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private cartService : CartService,
+    private snackBar : MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -76,4 +80,21 @@ export class ProductListComponent implements OnInit {
   searchByName(nameSearched: string) {
     this.getProducts(nameSearched);
   }
+
+  addItemToCart(itemId : number) {
+    this.cartService.addItem(itemId,1).subscribe(
+      (response) => {
+        console.log(response)
+      },
+      (error) => {
+        console.log(error)
+      },
+      () => {
+        this.snackBar.open('Item added succesfully!','', {
+          duration: 2000
+        })
+      }
+    )
+  }
+
 }
