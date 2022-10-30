@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
@@ -18,6 +18,8 @@ import { CategoryService } from './services/category.service';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CartService } from './services/cart.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FormsModule } from '@angular/forms';
+import { AuthInterceptor } from '../helpers/auth.interceptor';
 
 @NgModule({
   declarations: [NavBarComponent],
@@ -40,6 +42,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ProductService,
     CategoryService,
     CartService,
+    {
+      provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
+    }
   ],
   exports: [
     NavBarComponent,
@@ -55,6 +60,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatProgressSpinnerModule,
     MatBadgeModule,
     MatSnackBarModule,
+    FormsModule,
   ],
 })
 export class SharedModule {}

@@ -14,7 +14,7 @@
       <mat-card-actions>
         <div class="subtotal">
           <h3>Subtotal({{ cart.items.length }} items):</h3>
-          <p class="price">$ {{ cart.total_items }}</p>
+          <p class="price">$ {{ cart.total_items | number: '1.2'}}</p>
           <button mat-raised-button color="primary">Proceed to Checkout</button>
         </div>
       </mat-card-actions>

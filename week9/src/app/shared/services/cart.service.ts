@@ -11,20 +11,14 @@ export class CartService {
   private readonly url =
     'https://trainee-program-api-staging.applaudostudios.com/api/v1/cart';
 
-  headers = {};
 
   constructor(
-    private http: HttpClient,
-    private credentialStorage: CredentialStorageService
+    private http: HttpClient
   ) {}
 
   getCart(): Observable<Cart> {
     return this.http
-      .get<{ data: Cart }>(this.url, {
-        headers: {
-          Authorization: `bearer ${this.credentialStorage.getToken()}`,
-        },
-      })
+      .get<{ data: Cart }>(this.url)
       .pipe(
         map((response) => {
           return response.data;
@@ -45,16 +39,32 @@ export class CartService {
               },
             ],
           },
-        },
-        {
-          headers: {
-            Authorization: `bearer ${this.credentialStorage.getToken()}`,
-          },
         }
       )
       .pipe(
         map((response) => {
           return response ? true : false;
+        })
+      );
+  }
+
+  deleteItem(itemId: number): Observable<Cart> {
+    return this.http
+      .request<{ data: Cart }>('put', this.url, {
+        body: {
+          data: {
+            items: [
+              {
+                id: itemId,
+                _destroy: true,
+              },
+            ],
+          },
+        },
+      })
+      .pipe(
+        map((response) => {
+          return response.data;
         })
       );
   }
