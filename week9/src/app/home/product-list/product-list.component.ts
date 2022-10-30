@@ -6,6 +6,10 @@ import { ProductList } from 'src/app/shared/interfaces/productlist.interface';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { ProductService } from 'src/app/shared/services/product.service';
+import { tap } from 'rxjs/operators'
+import { Store } from '@ngrx/store';
+import { HomeState } from '../reducers';
+import { cartCreator, categoriesCreator } from '../home.actions';
 
 @Component({
   selector: 'app-product-list',
@@ -30,7 +34,8 @@ export class ProductListComponent implements OnInit {
     private productService: ProductService,
     private categoryService: CategoryService,
     private cartService: CartService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private store : Store<HomeState>
   ) {}
 
   ngOnInit(): void {
@@ -60,7 +65,11 @@ export class ProductListComponent implements OnInit {
   }
 
   getCategories(): void {
-    this.categoryService.getCategories().subscribe(
+    this.categoryService.getCategories().pipe(
+      tap((response) => {
+        // this.store.dispatch(categoriesCreator(response))
+      })
+    ).subscribe(
       (response) => {
         this.categories = response;
       },
@@ -84,10 +93,9 @@ export class ProductListComponent implements OnInit {
   addItemToCart(itemId: number) {
     this.cartService.addItem(itemId, 1).subscribe(
       (response) => {
-        console.log(response);
+        this.store.dispatch(cartCreator(response))
       },
       (error) => {
-        console.log(error);
       },
       () => {
         this.snackBar.open('Item added succesfully!', '', {

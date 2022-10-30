@@ -21,10 +21,8 @@ export class CartDetailsListComponent implements OnInit {
         this.removeCartFromArray(cartItemId);
       },
       (error) => {
-        console.log(error);
       },
       () => {
-        console.log('Completed');
       }
     );
   }

@@ -13,16 +13,19 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CartComponent } from './cart/cart.component';
 import { CartDetailsListComponent } from './cart-details-list/cart-details-list.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
-  declarations: [HomeComponent, ProductListComponent, ProductComponent, CartComponent, CartDetailsListComponent],
+  declarations: [HomeComponent, ProductListComponent, ProductComponent, CartComponent, CartDetailsListComponent, NavBarComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
     SharedModule,
-    StoreModule.forFeature(fromHome.homeFeatureKey, fromHome.reducers),
+    StoreModule.forFeature(fromHome.homeFeatureKey, fromHome.homeReducer),
     MatPaginatorModule,
     MatCheckboxModule,
+    MatMenuModule
   ],
   providers: [HomeGuard],
 })

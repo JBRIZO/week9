@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { HomeState } from '../reducers';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  constructor(private store : Store<HomeState>) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    // this.store.subscribe(state => console.log(state))
+  }
 }

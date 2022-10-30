@@ -21,7 +21,7 @@ export class CartService {
     );
   }
 
-  addItem(itemId: number, quantity: number): Observable<boolean> {
+  addItem(itemId: number, quantity: number): Observable<Cart> {
     return this.http
       .post<{ data: Cart }>(this.url, {
         data: {
@@ -35,7 +35,7 @@ export class CartService {
       })
       .pipe(
         map((response) => {
-          return response ? true : false;
+          return response.data;
         })
       );
   }

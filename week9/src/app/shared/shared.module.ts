@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
@@ -25,12 +23,11 @@ import { LikeControlsComponent } from './like-controls/like-controls.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
-  declarations: [NavBarComponent, LikeControlsComponent],
+  declarations: [LikeControlsComponent],
   imports: [
     CommonModule,
     HttpClientModule,
     MatDividerModule,
-    MatMenuModule,
     MatButtonModule,
     MatIconModule,
     JwtModule,
@@ -54,7 +51,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     LikesService,
   ],
   exports: [
-    NavBarComponent,
     MatInputModule,
     ReactiveFormsModule,
     MatCardModule,
