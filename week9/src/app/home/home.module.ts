@@ -11,9 +11,11 @@ import { StoreModule } from '@ngrx/store';
 import * as fromHome from './reducers';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { CartComponent } from './cart/cart.component';
+import { CartDetailsListComponent } from './cart-details-list/cart-details-list.component';
 
 @NgModule({
-  declarations: [HomeComponent, ProductListComponent, ProductComponent],
+  declarations: [HomeComponent, ProductListComponent, ProductComponent, CartComponent, CartDetailsListComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

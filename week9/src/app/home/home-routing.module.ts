@@ -4,6 +4,7 @@ import { HomeGuard } from './home.guard';
 import { HomeComponent } from './home/home.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductComponent } from './product/product.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {
@@ -20,11 +21,15 @@ const routes: Routes = [
         component: ProductListComponent,
       },
       {
+        path: 'cart',
+        component: CartComponent
+      },
+      {
         path: '',
         redirectTo: 'products',
       },
     ],
-  },
+  }
 ];
 
 @NgModule({
