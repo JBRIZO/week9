@@ -29,8 +29,8 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
-    private cartService : CartService,
-    private snackBar : MatSnackBar
+    private cartService: CartService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -81,20 +81,19 @@ export class ProductListComponent implements OnInit {
     this.getProducts(nameSearched);
   }
 
-  addItemToCart(itemId : number) {
-    this.cartService.addItem(itemId,1).subscribe(
+  addItemToCart(itemId: number) {
+    this.cartService.addItem(itemId, 1).subscribe(
       (response) => {
-        console.log(response)
+        console.log(response);
       },
       (error) => {
-        console.log(error)
+        console.log(error);
       },
       () => {
-        this.snackBar.open('Item added succesfully!','', {
-          duration: 2000
-        })
+        this.snackBar.open('Item added succesfully!', '', {
+          duration: 2000,
+        });
       }
-    )
+    );
   }
-
 }

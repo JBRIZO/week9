@@ -15,11 +15,35 @@
       <h1>{{ product?.name }}</h1>
       <p>{{ product?.description }}</p>
       <p>{{ product?.category?.name }}</p>
+      <p>Units available: {{ product?.master?.stock }}</p>
       <mat-divider></mat-divider>
       <p class="price">$ {{ product?.master?.price | number: "1.2" }}</p>
       <div class="row">
-        <p>Quantity</p>
-        <button>Add to cart</button>
+        <div class="quantity-picker">
+          <mat-icon
+            onClick="quantity.value == 1 ? '' : quantity.value = quantity.value - 1"
+            >remove</mat-icon
+          >
+          <input
+            #quantity
+            min="1"
+            type="number"
+            id="quantity"
+            value="1"
+            disabled
+          />
+          <mat-icon onClick="quantity.value = parseInt(quantity.value) + 1"
+            >add</mat-icon
+          >
+        </div>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="addToCart(quantity.value)"
+          [disabled]="product.master?.stock === 0"
+        >
+          Add to cart <mat-icon>add_shopping_cart</mat-icon>
+        </button>
       </div>
     </div>
   </div>

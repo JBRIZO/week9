@@ -141,9 +141,8 @@
                 width: 100%;
 
                 &.not-available {
-
-                  &::after{
-                    content: 'Not available';
+                  &::after {
+                    content: "Not available 🛇";
                     background-color: #ff4040;
                     color: white;
                     width: 100%;

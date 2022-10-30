@@ -32,7 +32,7 @@ export class CartService {
       );
   }
 
-  addItem(itemId : number, quantity: number): Observable<boolean> {
+  addItem(itemId: number, quantity: number): Observable<boolean> {
     return this.http
       .post<{ data: Cart }>(
         this.url,
@@ -42,7 +42,7 @@ export class CartService {
               {
                 product_variant_id: itemId,
                 quantity: quantity,
-              }
+              },
             ],
           },
         },
