@@ -24,7 +24,6 @@ import { LikesService } from './services/likes.service';
 import { LikeControlsComponent } from './like-controls/like-controls.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
-
 @NgModule({
   declarations: [NavBarComponent, LikeControlsComponent],
   imports: [
@@ -38,7 +37,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     RouterModule,
     MatBadgeModule,
     MatSnackBarModule,
-    MatProgressBarModule
+    MatProgressBarModule,
   ],
   providers: [
     CredentialStorageService,
@@ -69,7 +68,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatBadgeModule,
     MatSnackBarModule,
     FormsModule,
-    LikeControlsComponent
+    LikeControlsComponent,
   ],
 })
 export class SharedModule {}

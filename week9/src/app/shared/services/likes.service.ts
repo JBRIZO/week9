@@ -26,7 +26,7 @@ export class LikesService {
   dislikeProduct(product_id: number): Observable<boolean> {
     return this.http
       .post<{ data: Like }>(this.url, {
-        data: { product: product_id, kind: 'down' },
+        data: { product_id: product_id, kind: 'down' },
       })
       .pipe(
         map((response) => {

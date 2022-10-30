@@ -8,9 +8,8 @@ describe('LikeControlsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LikeControlsComponent ]
-    })
-    .compileComponents();
+      declarations: [LikeControlsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
