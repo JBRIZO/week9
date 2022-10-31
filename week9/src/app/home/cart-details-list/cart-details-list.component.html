@@ -12,20 +12,20 @@
           <div class="quantity-picker">
             <mat-icon
               (click)="
-                cartItems[i].quantity =
-                  cartItems[i].quantity === 1 ? 1 : cartItems[i].quantity - 1
+                cartItems![i].quantity =
+                  cartItems![i].quantity === 1 ? 1 : cartItems![i].quantity - 1
               "
               >remove</mat-icon
             >
             <input
-              [(ngModel)]="cartItems[i].quantity"
+              [(ngModel)]="cartItems![i].quantity"
               min="1"
               type="number"
               id="input{{ item.id }}"
               disabled
             />
             <mat-icon
-              (click)="cartItems[i].quantity = cartItems[i].quantity + 1"
+              (click)="cartItems![i].quantity = cartItems![i].quantity + 1"
               >add</mat-icon
             >
           </div>

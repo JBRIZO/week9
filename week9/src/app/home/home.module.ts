@@ -18,6 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { EffectsModule } from '@ngrx/effects';
 import { HomeEffects } from './home.effects';
 import { ProductsResolver } from './resolvers/products.resolver';
+import { ItemsTotalPipe } from './pipes/items-total.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ProductsResolver } from './resolvers/products.resolver';
     CartComponent,
     CartDetailsListComponent,
     NavBarComponent,
+    ItemsTotalPipe
   ],
   imports: [
     CommonModule,

@@ -9,12 +9,12 @@
       <span class="price-label">Price</span>
       <mat-divider inset></mat-divider>
       <mat-card-content>
-        <app-cart-details-list [cartItems]="cart.items"></app-cart-details-list>
+        <app-cart-details-list [cartItems]="cartItems$ | async"></app-cart-details-list>
       </mat-card-content>
       <mat-card-actions>
         <div class="subtotal">
           <h3>Subtotal({{ cart.items.length }} items):</h3>
-          <p class="price">$ {{ cart.total_items | number: "1.2" }}</p>
+          <p class="price">$ {{ cart.items | itemsTotal}}</p>
           <button mat-raised-button color="primary">Proceed to Checkout</button>
         </div>
       </mat-card-actions>

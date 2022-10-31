@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Cart } from 'src/app/shared/interfaces/cart.interface';
 import { CartItem } from 'src/app/shared/interfaces/cartitem.interface';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { HomeState } from '../reducers/home.reducers';
@@ -14,7 +13,7 @@ import { HomeActions } from '../action-types';
   styleUrls: ['./cart-details-list.component.scss'],
 })
 export class CartDetailsListComponent implements OnInit {
-  @Input() cartItems!: CartItem[];
+  @Input() cartItems!: CartItem[] | null;
 
   constructor(
     private cartService: CartService,
@@ -25,17 +24,13 @@ export class CartDetailsListComponent implements OnInit {
   ngOnInit(): void {}
 
   deleteCartItem(cartItemIndex: number): void {
-    const item = this.cartItems[cartItemIndex];
+    const item = this.cartItems![cartItemIndex];
     this.cartService
       .deleteItem(item.id!)
-      .pipe(
-        tap((response) => {
-          this.store.dispatch(HomeActions.cartItemRemoved({ item: item }));
-        })
-      )
       .subscribe(
         () => {
           this.removeItemFromArray(item.id!);
+          this.store.dispatch(HomeActions.cartItemRemoved({ item: item }));
         },
         (error: Error) => {
           this.snackBar.open(error.message, '', { duration: 3000 });
@@ -46,6 +41,6 @@ export class CartDetailsListComponent implements OnInit {
   }
 
   removeItemFromArray(cartItemId: number) {
-    this.cartItems = this.cartItems.filter((item) => item.id !== cartItemId);
+    this.cartItems = this.cartItems!.filter((item) => item.id !== cartItemId);
   }
 }
