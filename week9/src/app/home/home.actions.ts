@@ -18,9 +18,9 @@ export const cartLoaded = createAction(
   props<{ cart: CartItem[] }>()
 );
 
-export const cartItemAdded = createAction(
+export const addCartItem = createAction(
   '[Product-List] Cart Item Added',
-  props<{ cart: Cart }>()
+  props<{ cart: CartItem }>()
 );
 
 export const cartItemRemoved = createAction(

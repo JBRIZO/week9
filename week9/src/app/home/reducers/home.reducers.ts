@@ -20,31 +20,29 @@ export const homeFeatureKey = 'home';
 
 interface CategoriesState extends EntityState<Category> {}
 interface ProductsState extends EntityState<Product> {}
-interface CartState extends EntityState<CartItem> {
-  cart: Cart | undefined;
-}
+interface CartState extends EntityState<CartItem> {}
 const productsAdapter = createEntityAdapter<Product>();
 const categoriesAdapter = createEntityAdapter<Category>();
 const cartAdapter = createEntityAdapter<CartItem>();
 
 export interface HomeState {
   categories: CategoriesState;
-  cart: CartState;
+  cartItems: CartState;
   products: ProductsState;
 }
 
 export const initialHomeState: HomeState = {
   categories: categoriesAdapter.getInitialState(),
-  cart: cartAdapter.getInitialState({ cart: undefined }),
+  cartItems: cartAdapter.getInitialState({ cartItem: undefined }),
   products: productsAdapter.getInitialState(),
 };
 
 export const homeReducer = createReducer(
   initialHomeState,
-  on(HomeActions.cartItemAdded, (state, action) => {
+  on(HomeActions.addCartItem, (state, action) => {
     return {
       ...state,
-      cart: cartAdapter.addMany(action.cart.items, state.cart),
+      cartItems: cartAdapter.addOne(action.cart, state.cartItems),
     };
   }),
   on(HomeActions.allCategoriesLoaded, (state, action) => {
@@ -59,13 +57,13 @@ export const homeReducer = createReducer(
   on(HomeActions.cartItemRemoved, (state, action) => {
     return {
       ...state,
-      cart: cartAdapter.removeOne(action.item.id, state.cart),
+      cartItems: cartAdapter.removeOne(action.item.id!, state.cartItems),
     };
   }),
   on(HomeActions.cartLoaded, (state, action) => {
     return {
       ...state,
-      cart: cartAdapter.addMany(action.cart, state.cart),
+      cartItems: cartAdapter.addMany(action.cart, state.cartItems),
     };
   })
 );
@@ -74,5 +72,5 @@ export const selectCategoryState = (state: HomeState) => state.categories;
 export const { selectAll: selectAllCategories } =
   categoriesAdapter.getSelectors();
 
-export const selectCartState = (state: HomeState) => state.cart;
+export const selectCartState = (state: HomeState) => state.cartItems;
 export const { selectAll: selectAllCartItems } = cartAdapter.getSelectors();

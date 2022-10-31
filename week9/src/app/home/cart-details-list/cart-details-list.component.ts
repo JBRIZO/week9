@@ -27,7 +27,7 @@ export class CartDetailsListComponent implements OnInit {
   deleteCartItem(cartItemIndex: number): void {
     const item = this.cartItems[cartItemIndex];
     this.cartService
-      .deleteItem(item.id)
+      .deleteItem(item.id!)
       .pipe(
         tap((response) => {
           this.store.dispatch(HomeActions.cartItemRemoved({ item: item }));
@@ -35,7 +35,7 @@ export class CartDetailsListComponent implements OnInit {
       )
       .subscribe(
         () => {
-          this.removeItemFromArray(item.id);
+          this.removeItemFromArray(item.id!);
         },
         (error: Error) => {
           this.snackBar.open(error.message, '', { duration: 3000 });

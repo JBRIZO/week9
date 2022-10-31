@@ -50,7 +50,10 @@
             <div *ngIf="productList.data.length === 0" class="not-found">
               Product not found.
             </div>
-            <div class="grid-item" *ngFor="let product of productList.data">
+            <div
+              class="grid-item"
+              *ngFor="let product of productList.data; let i = index"
+            >
               <div class="product-list-item">
                 <img
                   [src]="product.image?.url"

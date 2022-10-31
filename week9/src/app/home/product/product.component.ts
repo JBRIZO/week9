@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Product } from 'src/app/shared/interfaces/product.interface';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { ProductService } from 'src/app/shared/services/product.service';
+import { addCartItem } from '../home.actions';
 
 @Component({
   selector: 'app-product',
@@ -19,7 +21,8 @@ export class ProductComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private cartService: CartService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +50,9 @@ export class ProductComponent implements OnInit {
           this.snackBar.open('Item added succesfully!', '', {
             duration: 3000,
           });
+          this.store.dispatch(
+            addCartItem({ cart: response.items[response.items.length - 1] })
+          );
         },
         (error) => {
           this.snackBar.open('An error ocurred!', '', {

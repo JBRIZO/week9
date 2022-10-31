@@ -27,5 +27,5 @@ export const selectAllCartItems = createSelector(
 
 export const selectCartItemsCount = createSelector(
   selectHomeState,
-  (state) => state.cart.ids.length
+  (state) => state.cartItems.ids.length
 );

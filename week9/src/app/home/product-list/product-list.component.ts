@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CategoryList } from 'src/app/shared/interfaces/categorylist.interface';
 import { ProductList } from 'src/app/shared/interfaces/productlist.interface';
 import { CartService } from 'src/app/shared/services/cart.service';
-import { CategoryService } from 'src/app/shared/services/category.service';
 import { ProductService } from 'src/app/shared/services/product.service';
-import { tap } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
 import { HomeState } from '../reducers/home.reducers';
-import { HomeActions } from '../action-types';
 import { Observable } from 'rxjs';
 import { selectAllCategories } from '../selectors/home.selectors';
 import { Category } from 'src/app/shared/interfaces/category.interface';
+import { CartItem } from 'src/app/shared/interfaces/cartitem.interface';
+import { addCartItem } from '../home.actions';
+import { HomeActions } from '../action-types';
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -78,7 +78,11 @@ export class ProductListComponent implements OnInit {
   addItemToCart(itemId: number) {
     this.cartService.addItem(itemId, 1).subscribe(
       (response) => {
-        this.store.dispatch(HomeActions.cartItemAdded({ cart: response }));
+        this.store.dispatch(
+          HomeActions.addCartItem({
+            cart: response.items[response.items.length - 1],
+          })
+        );
       },
       (error: Error) => {
         this.snackBar.open(error.message, '', {
