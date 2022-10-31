@@ -17,7 +17,14 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
-  declarations: [HomeComponent, ProductListComponent, ProductComponent, CartComponent, CartDetailsListComponent, NavBarComponent],
+  declarations: [
+    HomeComponent,
+    ProductListComponent,
+    ProductComponent,
+    CartComponent,
+    CartDetailsListComponent,
+    NavBarComponent,
+  ],
   imports: [
     CommonModule,
     HomeRoutingModule,
@@ -25,7 +32,7 @@ import { MatMenuModule } from '@angular/material/menu';
     StoreModule.forFeature(fromHome.homeFeatureKey, fromHome.homeReducer),
     MatPaginatorModule,
     MatCheckboxModule,
-    MatMenuModule
+    MatMenuModule,
   ],
   providers: [HomeGuard],
 })

@@ -17,14 +17,18 @@ export class LikeControlsComponent implements OnInit {
   likeProduct(): void {
     this.likeService.likeProduct(this.product.id).subscribe(() => {
       this.product.likes_up_count++;
-      this.product.likes_down_count = this.product.likes_down_count === 0 ? 0 : this.product.likes_down_count - 1
+      this.product.likes_down_count =
+        this.product.likes_down_count === 0
+          ? 0
+          : this.product.likes_down_count - 1;
     });
   }
 
   dislikeProduct(): void {
     this.likeService.dislikeProduct(this.product.id).subscribe(() => {
       this.product.likes_down_count++;
-      this.product.likes_up_count = this.product.likes_up_count === 0 ? 0 : this.product.likes_up_count - 1
+      this.product.likes_up_count =
+        this.product.likes_up_count === 0 ? 0 : this.product.likes_up_count - 1;
     });
   }
 }

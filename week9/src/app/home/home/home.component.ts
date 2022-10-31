@@ -8,10 +8,9 @@ import { HomeState } from '../reducers';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private store : Store<HomeState>) {}
+  constructor(private store: Store<HomeState>) {}
 
   ngOnInit(): void {
-
     // this.store.subscribe(state => console.log(state))
   }
 }

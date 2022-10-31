@@ -42,9 +42,14 @@
               }}</label>
             </div>
           </div>
-          <mat-divider [vertical]="true" style="height: 90%; align-self: center;"></mat-divider>
+          <mat-divider
+            [vertical]="true"
+            style="height: 90%; align-self: center"
+          ></mat-divider>
           <div class="grid-container">
-            <div *ngIf="productList.data.length === 0" class="not-found">Product not found.</div>
+            <div *ngIf="productList.data.length === 0" class="not-found">
+              Product not found.
+            </div>
             <div class="grid-item" *ngFor="let product of productList.data">
               <div class="product-list-item">
                 <img
