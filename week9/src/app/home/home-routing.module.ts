@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductComponent } from './product/product.component';
 import { CartComponent } from './cart/cart.component';
+import { ProductsResolver } from './resolvers/products.resolver';
 
 const routes: Routes = [
   {
@@ -19,6 +20,9 @@ const routes: Routes = [
       {
         path: 'products',
         component: ProductListComponent,
+        resolve: {
+          products: ProductsResolver
+        }
       },
       {
         path: 'cart',

@@ -18,7 +18,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private credentialStorage: CredentialStorageService,
     private snackbar: MatSnackBar,
-    private router : Router
+    private router: Router
   ) {}
 
   intercept(
@@ -34,14 +34,21 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
-          this.snackbar.open('You need to login to perform this action.', 'Go to Login').onAction().subscribe(() => {
-            this.router.navigate(['/login'])
-          });
+          this.snackbar
+            .open('You need to login to perform this action.', 'Go to Login')
+            .onAction()
+            .subscribe(() => {
+              this.router.navigate(['/login']);
+            });
         }
-        if(error.status === 500) {
-          this.snackbar.open('An unexpected error ocurred. Please try again later', '', {
-            duration: 3000,
-          });
+        if (error.status === 500) {
+          this.snackbar.open(
+            'An unexpected error ocurred. Please try again later',
+            '',
+            {
+              duration: 3000,
+            }
+          );
         }
         return throwError(error);
       })

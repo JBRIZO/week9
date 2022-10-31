@@ -9,8 +9,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 import { tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { HomeState } from '../reducers';
-import { cart, categories } from '../home.actions';
-
+import { HomeActions } from '../action-types';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -69,7 +68,7 @@ export class ProductListComponent implements OnInit {
       .getCategories()
       .pipe(
         tap((response) => {
-          this.store.dispatch(categories(response));
+          this.store.dispatch(HomeActions.categories({ categories: response }));
         })
       )
       .subscribe(
@@ -96,12 +95,12 @@ export class ProductListComponent implements OnInit {
   addItemToCart(itemId: number) {
     this.cartService.addItem(itemId, 1).subscribe(
       (response) => {
-        this.store.dispatch(cart(response));
+        this.store.dispatch(HomeActions.cartItemAdded({ cart: response }));
       },
-      (error : Error) => {
-        this.snackBar.open(error.message,'',{
-          duration: 3000
-        })
+      (error: Error) => {
+        this.snackBar.open(error.message, '', {
+          duration: 3000,
+        });
       },
       () => {
         this.snackBar.open('Item added succesfully!', '', {

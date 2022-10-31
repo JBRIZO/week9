@@ -15,6 +15,9 @@ import { CartComponent } from './cart/cart.component';
 import { CartDetailsListComponent } from './cart-details-list/cart-details-list.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { EffectsModule } from '@ngrx/effects';
+import { HomeEffects } from './home.effects';
+import { ProductsResolver } from './resolvers/products.resolver';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatPaginatorModule,
     MatCheckboxModule,
     MatMenuModule,
+    EffectsModule.forRoot([HomeEffects]),
   ],
-  providers: [HomeGuard],
+  providers: [HomeGuard, ProductsResolver],
 })
 export class HomeModule {}

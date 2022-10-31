@@ -5,8 +5,8 @@ import { CartItem } from 'src/app/shared/interfaces/cartitem.interface';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { HomeState } from '../reducers';
 import { tap } from 'rxjs/operators';
-import { cart } from '../home.actions';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HomeActions } from '../action-types';
 
 @Component({
   selector: 'app-cart-details-list',
@@ -19,25 +19,27 @@ export class CartDetailsListComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private store: Store<HomeState>,
-    private snackBar : MatSnackBar
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {}
 
-  deleteCartItem(cartItemId: number): void {
+  deleteCartItem(cartItemIndex : number): void {
+    const item = this.cartItems[cartItemIndex]
     this.cartService
-      .deleteItem(cartItemId)
+      .deleteItem(item.id)
       .pipe(
         tap((response) => {
-          this.store.dispatch(cart(response))
+          this.store.dispatch(HomeActions.cartItemRemoved({ item: item }));
         })
       )
       .subscribe(
         () => {
-          this.removeItemFromArray(cartItemId);
+          this.removeItemFromArray(item.id);
         },
-        (error : Error) => {
-          this.snackBar.open(error.message,'',{duration: 3000})
+        (error: Error) => {
+          this.snackBar.open(error.message, '', { duration: 3000 });
+          this.store.dispatch(HomeActions.cartItemRemoved({ item: item }));
         },
         () => {}
       );

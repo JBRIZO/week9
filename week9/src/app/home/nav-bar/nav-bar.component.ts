@@ -6,9 +6,9 @@ import { CartService } from '../../shared/services/cart.service';
 import { CredentialStorageService } from '../../shared/services/credential-storage.service';
 import { HomeState } from '../reducers';
 import { tap } from 'rxjs/operators';
-import { cart } from '../home.actions';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { HomeActions } from '../action-types';
+
 
 @Component({
   selector: 'app-nav-bar',
@@ -48,7 +48,7 @@ export class NavBarComponent implements OnInit {
       .getCart()
       .pipe(
         tap((response) => {
-          this.store.dispatch(cart(response));
+          this.store.dispatch(HomeActions.cartItemAdded({ cart: response }));
         })
       )
       .subscribe();

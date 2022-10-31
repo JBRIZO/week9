@@ -1,4 +1,8 @@
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpResponse,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { Cart } from '../interfaces/cart.interface';
@@ -35,19 +39,19 @@ export class CartService {
         map((response) => {
           return response.data;
         }),
-        catchError((error : HttpErrorResponse) => {
-          let errorMessage: Error = new Error('')
-          if(error.status === 422){
-            errorMessage.message = 'Item already added'
+        catchError((error: HttpErrorResponse) => {
+          let errorMessage: Error = new Error('');
+          if (error.status === 422) {
+            errorMessage.message = 'Item already added';
           }
-          return throwError(errorMessage)
+          return throwError(errorMessage);
         })
       );
   }
 
   deleteItem(itemId: number): Observable<Cart> {
     return this.http
-      .request<{ data: Cart }>('put',this.url, {
+      .request<{ data: Cart }>('put', this.url, {
         body: {
           data: {
             items: [
@@ -64,11 +68,11 @@ export class CartService {
           return response.data;
         }),
         catchError((error: HttpErrorResponse) => {
-          let errorMessage : Error = new Error('')
-          if(error.status === 422){
-            errorMessage.message = "There are no items in the cart."
+          let errorMessage: Error = new Error('');
+          if (error.status === 422) {
+            errorMessage.message = 'There are no items in the cart.';
           }
-          return throwError(errorMessage)
+          return throwError(errorMessage);
         })
       );
   }
