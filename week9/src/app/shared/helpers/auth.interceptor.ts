@@ -11,12 +11,14 @@ import { CredentialStorageService } from '../services/credential-storage.service
 import { catchError } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private credentialStorage: CredentialStorageService,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private router : Router
   ) {}
 
   intercept(
@@ -32,13 +34,15 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
-          this.snackbar.open('You need to login to perform this action.', '', {
+          this.snackbar.open('You need to login to perform this action.', 'Go to Login').onAction().subscribe(() => {
+            this.router.navigate(['/login'])
+          });
+        }
+        if(error.status === 500) {
+          this.snackbar.open('An unexpected error ocurred. Please try again later', '', {
             duration: 3000,
           });
         }
-        this.snackbar.open('An error ocurred. Please try again later', '', {
-          duration: 3000,
-        });
         return throwError(error);
       })
     );

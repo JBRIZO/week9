@@ -98,7 +98,11 @@ export class ProductListComponent implements OnInit {
       (response) => {
         this.store.dispatch(cart(response));
       },
-      (error) => {},
+      (error : Error) => {
+        this.snackBar.open(error.message,'',{
+          duration: 3000
+        })
+      },
       () => {
         this.snackBar.open('Item added succesfully!', '', {
           duration: 2000,

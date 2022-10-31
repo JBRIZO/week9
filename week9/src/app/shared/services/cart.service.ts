@@ -1,10 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CredentialStorageService } from './credential-storage.service';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Cart } from '../interfaces/cart.interface';
-import { map } from 'rxjs/operators';
-import { CartItem } from '../interfaces/cartitem.interface';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class CartService {
@@ -36,13 +34,20 @@ export class CartService {
       .pipe(
         map((response) => {
           return response.data;
+        }),
+        catchError((error : HttpErrorResponse) => {
+          let errorMessage: Error = new Error('')
+          if(error.status === 422){
+            errorMessage.message = 'Item already added'
+          }
+          return throwError(errorMessage)
         })
       );
   }
 
   deleteItem(itemId: number): Observable<Cart> {
     return this.http
-      .request<{ data: Cart }>('put', this.url, {
+      .request<{ data: Cart }>('put',this.url, {
         body: {
           data: {
             items: [
@@ -57,6 +62,13 @@ export class CartService {
       .pipe(
         map((response) => {
           return response.data;
+        }),
+        catchError((error: HttpErrorResponse) => {
+          let errorMessage : Error = new Error('')
+          if(error.status === 422){
+            errorMessage.message = "There are no items in the cart."
+          }
+          return throwError(errorMessage)
         })
       );
   }

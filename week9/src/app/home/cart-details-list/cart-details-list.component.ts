@@ -6,6 +6,7 @@ import { CartService } from 'src/app/shared/services/cart.service';
 import { HomeState } from '../reducers';
 import { tap } from 'rxjs/operators';
 import { cart } from '../home.actions';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cart-details-list',
@@ -17,7 +18,8 @@ export class CartDetailsListComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private store: Store<HomeState>
+    private store: Store<HomeState>,
+    private snackBar : MatSnackBar
   ) {}
 
   ngOnInit(): void {}
@@ -31,16 +33,17 @@ export class CartDetailsListComponent implements OnInit {
         })
       )
       .subscribe(
-        (response) => {
-          console.log(response);
-          this.removeCartFromArray(cartItemId);
+        () => {
+          this.removeItemFromArray(cartItemId);
         },
-        (error) => {},
+        (error : Error) => {
+          this.snackBar.open(error.message,'',{duration: 3000})
+        },
         () => {}
       );
   }
 
-  removeCartFromArray(cartItemId: number) {
+  removeItemFromArray(cartItemId: number) {
     this.cartItems = this.cartItems.filter((item) => item.id !== cartItemId);
   }
 }
