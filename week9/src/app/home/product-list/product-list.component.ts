@@ -7,9 +7,12 @@ import { CartService } from 'src/app/shared/services/cart.service';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { tap } from 'rxjs/operators';
-import { Store } from '@ngrx/store';
-import { HomeState } from '../reducers';
+import { select, Store } from '@ngrx/store';
+import { HomeState } from '../reducers/home.reducers';
 import { HomeActions } from '../action-types';
+import { Observable } from 'rxjs';
+import { selectAllCategories } from '../selectors/home.selectors';
+import { Category } from 'src/app/shared/interfaces/category.interface';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -24,22 +27,21 @@ export class ProductListComponent implements OnInit {
   productList!: ProductList;
   loadingProducts = true;
 
-  categories?: CategoryList;
-  loadingCategories = true;
+  categories$?: Observable<Category[]>;
+  loadingCategories = false;
 
   selectedCategoryFilter?: number | null = null;
 
   constructor(
     private productService: ProductService,
-    private categoryService: CategoryService,
     private cartService: CartService,
     private snackBar: MatSnackBar,
     private store: Store<HomeState>
   ) {}
 
   ngOnInit(): void {
+    this.categories$ = this.store.pipe(select(selectAllCategories));
     this.getProducts();
-    this.getCategories();
   }
 
   getProducts(nameSearched?: string): void {
@@ -59,25 +61,6 @@ export class ProductListComponent implements OnInit {
         () => {},
         () => {
           this.loadingProducts = false;
-        }
-      );
-  }
-
-  getCategories(): void {
-    this.categoryService
-      .getCategories()
-      .pipe(
-        tap((response) => {
-          this.store.dispatch(HomeActions.categories({ categories: response }));
-        })
-      )
-      .subscribe(
-        (response) => {
-          this.categories = response;
-        },
-        () => {},
-        () => {
-          this.loadingCategories = false;
         }
       );
   }

@@ -4,11 +4,15 @@ import { select, Store } from '@ngrx/store';
 import { User } from '../../shared/interfaces/user.interface';
 import { CartService } from '../../shared/services/cart.service';
 import { CredentialStorageService } from '../../shared/services/credential-storage.service';
-import { HomeState } from '../reducers';
+import { HomeState } from '../reducers/home.reducers';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { HomeActions } from '../action-types';
-
+import {
+  selectAllCartItems,
+  selectCartItemsCount,
+} from '../selectors/home.selectors';
+import { CartItem } from 'src/app/shared/interfaces/cartitem.interface';
 
 @Component({
   selector: 'app-nav-bar',
@@ -23,34 +27,17 @@ export class NavBarComponent implements OnInit {
   constructor(
     private credentialStorageService: CredentialStorageService,
     private router: Router,
-    private cartService: CartService,
     private store: Store<HomeState>
   ) {}
 
   ngOnInit(): void {
     this.user = this.credentialStorageService.getStoredUser()!;
-    this.getCart();
 
-    this.cartItemCount$ = this.store.pipe(
-      select((state: any) =>
-        state.home.cart !== undefined ? state.home.cart!.items.length : 0
-      )
-    );
+    this.cartItemCount$ = this.store.pipe(select(selectCartItemsCount));
   }
 
   logout(): void {
     this.credentialStorageService.signOut();
     this.router.navigate(['/login']);
-  }
-
-  getCart(): void {
-    this.cartService
-      .getCart()
-      .pipe(
-        tap((response) => {
-          this.store.dispatch(HomeActions.cartItemAdded({ cart: response }));
-        })
-      )
-      .subscribe();
   }
 }

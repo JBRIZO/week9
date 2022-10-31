@@ -28,7 +28,7 @@
               />
               <label for="all" class="category-label">All</label>
             </div>
-            <div class="category" *ngFor="let category of categories?.data">
+            <div class="category" *ngFor="let category of categories$ | async">
               <input
                 type="radio"
                 [(ngModel)]="selectedCategoryFilter"

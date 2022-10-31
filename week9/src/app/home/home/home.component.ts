@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { HomeState } from '../reducers';
+import { HomeState } from '../reducers/home.reducers';
 
 @Component({
   selector: 'app-home',

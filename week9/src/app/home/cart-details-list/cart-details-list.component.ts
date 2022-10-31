@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Cart } from 'src/app/shared/interfaces/cart.interface';
 import { CartItem } from 'src/app/shared/interfaces/cartitem.interface';
 import { CartService } from 'src/app/shared/services/cart.service';
-import { HomeState } from '../reducers';
+import { HomeState } from '../reducers/home.reducers';
 import { tap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HomeActions } from '../action-types';
@@ -24,8 +24,8 @@ export class CartDetailsListComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  deleteCartItem(cartItemIndex : number): void {
-    const item = this.cartItems[cartItemIndex]
+  deleteCartItem(cartItemIndex: number): void {
+    const item = this.cartItems[cartItemIndex];
     this.cartService
       .deleteItem(item.id)
       .pipe(

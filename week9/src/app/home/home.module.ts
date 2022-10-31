@@ -8,7 +8,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductComponent } from './product/product.component';
 import { HomeGuard } from './home.guard';
 import { StoreModule } from '@ngrx/store';
-import * as fromHome from './reducers';
+import * as fromHome from './reducers/home.reducers';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CartComponent } from './cart/cart.component';

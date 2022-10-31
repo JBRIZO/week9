@@ -21,8 +21,8 @@ const routes: Routes = [
         path: 'products',
         component: ProductListComponent,
         resolve: {
-          products: ProductsResolver
-        }
+          products: ProductsResolver,
+        },
       },
       {
         path: 'cart',
