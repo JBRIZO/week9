@@ -35,6 +35,7 @@ export class HomeEffects {
       map((products) => allProductsLoaded({ products }))
     )
   );
+
   loadCategories$ = createEffect(() =>
     this.actions$.pipe(
       ofType(HomeActions.loadCategories),
@@ -43,6 +44,17 @@ export class HomeEffects {
         allCategoriesLoaded({ categories: categoryList.data })
       )
     )
+  );
+
+  updateCart$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(HomeActions.cartItemUpdated),
+        concatMap((action) =>
+          this.cartService.modifyItem(action.update.id, action.update.changes)
+        )
+      ),
+    { dispatch: false }
   );
   constructor(
     private actions$: Actions,

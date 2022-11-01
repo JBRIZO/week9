@@ -24,8 +24,7 @@ export class CartDetailsListComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   getProduct(productId: number): Product | undefined {
     let product: Product | undefined = undefined;
@@ -67,16 +66,16 @@ export class CartDetailsListComponent implements OnInit {
       changes: newCartItem,
     };
 
-    this.store.dispatch(cartItemUpdated({update}))
+    this.store.dispatch(cartItemUpdated({ update }));
   }
 
   decrement(quantity: string): string {
-    const result = parseInt(quantity) - 1
+    const result = parseInt(quantity) === 1 ? 1 : parseInt(quantity) - 1;
     return result.toString();
   }
 
   increment(quantity: string): string {
-    const result = parseInt(quantity) + 1
+    const result = parseInt(quantity) + 1;
     return result.toString();
   }
 }

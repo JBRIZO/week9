@@ -1,6 +1,6 @@
 <div class="container">
   <div class="wrapper">
-    <div class="spinner-container" *ngIf="loadingProducts || loadingCategories">
+    <div class="spinner-container" *ngIf="loadingProducts">
       <mat-spinner></mat-spinner>
     </div>
     <div class="products-view" *ngIf="!loadingProducts">

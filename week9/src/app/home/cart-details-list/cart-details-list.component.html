@@ -20,7 +20,11 @@
         <div class="row">
           <label>Quantity:</label>
           <div class="quantity-picker">
-            <mat-icon (click)="quantity.value = decrement(quantity.value); modifyCartItem(i,quantity.value)"
+            <mat-icon
+              (click)="
+                quantity.value = decrement(quantity.value);
+                modifyCartItem(i, quantity.value)
+              "
               >remove</mat-icon
             >
             <input
@@ -30,7 +34,11 @@
               [value]="cartItems![i].quantity"
               disabled
             />
-            <mat-icon (click)="quantity.value = increment(quantity.value); modifyCartItem(i,quantity.value)"
+            <mat-icon
+              (click)="
+                quantity.value = increment(quantity.value);
+                modifyCartItem(i, quantity.value)
+              "
               >add</mat-icon
             >
           </div>

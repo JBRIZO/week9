@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ProductList } from 'src/app/shared/interfaces/productlist.interface';
 import { CartService } from 'src/app/shared/services/cart.service';
-import { ProductService } from 'src/app/shared/services/product.service';
 import { select, Store } from '@ngrx/store';
 import { HomeState } from '../reducers/home.reducers';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import {
   selectAllCategories,
   selectAllProducts,
@@ -28,7 +25,6 @@ export class ProductListComponent implements OnInit {
   pageSizeOptions: number[] = [5, 10, 25];
 
   categories$?: Observable<Category[]>;
-  loadingCategories = false;
 
   products!: Product[];
   loadingProducts = true;

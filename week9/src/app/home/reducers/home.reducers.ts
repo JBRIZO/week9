@@ -9,13 +9,11 @@ import {
   State,
   on,
 } from '@ngrx/store';
-import { Cart } from 'src/app/shared/interfaces/cart.interface';
 import { HomeActions } from '../action-types';
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { Category } from 'src/app/shared/interfaces/category.interface';
 import { Product } from 'src/app/shared/interfaces/product.interface';
 import { CartItem } from 'src/app/shared/interfaces/cartitem.interface';
-import { Pagination } from 'src/app/shared/interfaces/pagination.interface';
 import { ProductList } from 'src/app/shared/interfaces/productlist.interface';
 
 export const homeFeatureKey = 'home';
@@ -77,11 +75,11 @@ export const homeReducer = createReducer(
       products: productsAdapter.addMany(action.products.data, state.products),
     };
   }),
-  on(HomeActions.cartItemUpdated, (state,action) => {
+  on(HomeActions.cartItemUpdated, (state, action) => {
     return {
       ...state,
-      cartItems: cartAdapter.updateOne(action.update, state.cartItems)
-    }
+      cartItems: cartAdapter.updateOne(action.update, state.cartItems),
+    };
   })
 );
 
