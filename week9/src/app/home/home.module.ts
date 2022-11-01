@@ -31,7 +31,7 @@ import { ImageloadComponent } from './imageload/imageload.component';
     NavBarComponent,
     ItemsTotalPipe,
     LikeControlsComponent,
-    ImageloadComponent
+    ImageloadComponent,
   ],
   imports: [
     CommonModule,

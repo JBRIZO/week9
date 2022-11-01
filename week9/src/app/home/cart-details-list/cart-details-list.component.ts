@@ -8,6 +8,8 @@ import { Product } from 'src/app/shared/interfaces/product.interface';
 import { selectProductById } from '../selectors/home.selectors';
 import { Update } from '@ngrx/entity';
 import { cartItemUpdated } from '../home.actions';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cart-details-list',
@@ -19,7 +21,7 @@ export class CartDetailsListComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private store: Store<HomeState>,
+    private store: Store<HomeState>
   ) {}
 
   ngOnInit(): void {}
@@ -42,7 +44,7 @@ export class CartDetailsListComponent implements OnInit {
         this.store.dispatch(HomeActions.cartItemRemoved({ item: item }));
       },
       () => {
-        if(this.cartItems?.length === 1){
+        if (this.cartItems?.length === 1) {
           this.removeItemFromArray(item.id!);
           this.store.dispatch(HomeActions.cartItemRemoved({ item: item }));
         }

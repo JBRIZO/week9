@@ -12,7 +12,12 @@
         Log In
       </button>
     </div>
-    <div class="user" [matMenuTriggerFor]="loginMenu" #loginMenuTrigger *ngIf="user">
+    <div
+      class="user"
+      [matMenuTriggerFor]="loginMenu"
+      #loginMenuTrigger
+      *ngIf="user"
+    >
       <p>{{ user?.name }}</p>
       <img src="assets/images/user-icon.png" />
       <mat-menu #loginMenu="matMenu">

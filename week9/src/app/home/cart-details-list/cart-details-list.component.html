@@ -1,7 +1,10 @@
 <div class="container">
   <div *ngFor="let item of cartItems; let i = index">
     <div class="detail-item">
-      <app-imageload [image]="getProduct(item.productId)!.image!" [routerLink]="['/home/products', item.productId]"></app-imageload>
+      <app-imageload
+        [image]="getProduct(item.productId)!.image!"
+        [routerLink]="['/home/products', item.productId]"
+      ></app-imageload>
       <div class="detail-data">
         <div class="row space-between">
           <h2

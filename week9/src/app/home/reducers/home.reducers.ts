@@ -19,13 +19,13 @@ import { ProductList } from 'src/app/shared/interfaces/productlist.interface';
 export const homeFeatureKey = 'home';
 
 interface CategoriesState extends EntityState<Category> {
-  categoriesFetched : boolean
+  categoriesFetched: boolean;
 }
 interface CartState extends EntityState<CartItem> {
-  cartFetched: boolean
+  cartFetched: boolean;
 }
 interface ProductsState extends EntityState<Product> {
-  productsFetched: boolean
+  productsFetched: boolean;
 }
 const productsAdapter = createEntityAdapter<Product>();
 const categoriesAdapter = createEntityAdapter<Category>();
@@ -40,10 +40,9 @@ export interface HomeState {
 
 export const initialHomeState: HomeState = {
   categories: categoriesAdapter.getInitialState({ categoriesFetched: false }),
-  cartItems: cartAdapter.getInitialState({ cartFetched: false}),
+  cartItems: cartAdapter.getInitialState({ cartFetched: false }),
   paginatedProducts: undefined,
-  products: productsAdapter.getInitialState( {productsFetched: false }),
-
+  products: productsAdapter.getInitialState({ productsFetched: false }),
 };
 
 export const homeReducer = createReducer(
@@ -57,10 +56,10 @@ export const homeReducer = createReducer(
   on(HomeActions.allCategoriesLoaded, (state, action) => {
     return {
       ...state,
-      categories: categoriesAdapter.addMany(
-        action.categories,
-        {...state.categories, categoriesFetched: true}
-      ),
+      categories: categoriesAdapter.addMany(action.categories, {
+        ...state.categories,
+        categoriesFetched: true,
+      }),
     };
   }),
   on(HomeActions.cartItemRemoved, (state, action) => {
@@ -72,14 +71,20 @@ export const homeReducer = createReducer(
   on(HomeActions.cartLoaded, (state, action) => {
     return {
       ...state,
-      cartItems: cartAdapter.addMany(action.cart, {...state.cartItems, cartFetched: true}),
+      cartItems: cartAdapter.addMany(action.cart, {
+        ...state.cartItems,
+        cartFetched: true,
+      }),
     };
   }),
   on(HomeActions.allProductsLoaded, (state, action) => {
     return {
       ...state,
       paginatedProducts: action.products,
-      products: productsAdapter.addMany(action.products.data, {...state.products, coursesFetched: true}),
+      products: productsAdapter.addMany(action.products.data, {
+        ...state.products,
+        productsFetched: true,
+      }),
     };
   }),
   on(HomeActions.cartItemUpdated, (state, action) => {
@@ -89,7 +94,7 @@ export const homeReducer = createReducer(
     };
   }),
   on(HomeActions.clearStore, () => {
-    return initialHomeState
+    return initialHomeState;
   })
 );
 

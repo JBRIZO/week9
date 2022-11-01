@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product.interface';
 import { ProductList } from '../interfaces/productlist.interface';
 import { map } from 'rxjs/operators';
-import { Meta } from '@angular/platform-browser';
 import { Pagination } from '../interfaces/pagination.interface';
 
 @Injectable()

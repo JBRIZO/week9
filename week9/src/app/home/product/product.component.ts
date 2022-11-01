@@ -44,15 +44,13 @@ export class ProductComponent implements OnInit {
   addToCart(quantity: string): void {
     this.cartService
       .addItem(this.product?.master!.id!, parseInt(quantity))
-      .subscribe(
-        (response) => {
-          this.snackBar.open('Item added succesfully!', '', {
-            duration: 3000,
-          });
-          this.store.dispatch(
-            addCartItem({ cart: response.items[response.items.length - 1] })
-          );
-        }
-      );
+      .subscribe((response) => {
+        this.snackBar.open('Item added succesfully!', '', {
+          duration: 3000,
+        });
+        this.store.dispatch(
+          addCartItem({ cart: response.items[response.items.length - 1] })
+        );
+      });
   }
 }

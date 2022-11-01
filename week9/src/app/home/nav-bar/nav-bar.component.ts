@@ -38,6 +38,6 @@ export class NavBarComponent implements OnInit {
   logout(): void {
     this.credentialStorageService.signOut();
     this.router.navigate(['/login']);
-    this.store.dispatch(HomeActions.clearStore())
+    this.store.dispatch(HomeActions.clearStore());
   }
 }

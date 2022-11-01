@@ -15,7 +15,10 @@ import { CredentialStorageService } from 'src/app/shared/services/credential-sto
 export class ProductsResolver implements Resolve<any> {
   loading = false;
 
-  constructor(private store: Store<HomeState>, private credentialStorage : CredentialStorageService) {}
+  constructor(
+    private store: Store<HomeState>,
+    private credentialStorage: CredentialStorageService
+  ) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.store.pipe(
@@ -25,8 +28,8 @@ export class ProductsResolver implements Resolve<any> {
           this.loading = true;
           this.store.dispatch(HomeActions.loadProducts({}));
           this.store.dispatch(HomeActions.loadCategories());
-          if(this.credentialStorage.isLoggedIn())
-          this.store.dispatch(HomeActions.loadCart());
+          if (this.credentialStorage.isLoggedIn())
+            this.store.dispatch(HomeActions.loadCart());
         }
       }),
       first(),

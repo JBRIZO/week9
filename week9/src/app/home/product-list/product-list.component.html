@@ -52,7 +52,10 @@
               *ngFor="let product of products; let i = index"
             >
               <div class="product-list-item">
-                <app-imageload [image]="product!.image!" [routerLink]="['/home/products', product.id]"></app-imageload>
+                <app-imageload
+                  [image]="product!.image!"
+                  [routerLink]="['/home/products', product.id]"
+                ></app-imageload>
                 <app-like-controls [product]="product"></app-like-controls>
                 <h2 [routerLink]="['/home/products', product.id]">
                   {{ product.name }}

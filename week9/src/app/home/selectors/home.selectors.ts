@@ -50,23 +50,24 @@ export const selectProductById = (id: number) =>
 
 export const isCartLoaded = createSelector(
   selectCartState,
-  state => state.cartFetched
-)
+  (state) => state.cartFetched
+);
 
 export const areProductsLoaded = createSelector(
   selectHomeState,
-  state => state.products !== undefined
-)
+  (state) => state.products !== undefined
+);
 
 export const areCategoriesLoaded = createSelector(
   selectCategoryState,
-  state => state.categoriesFetched
-)
+  (state) => state.categoriesFetched
+);
 
 export const stateLoaded = createSelector(
   selectHomeState,
   isCartLoaded,
   areProductsLoaded,
   areCategoriesLoaded,
-  (cartLoaded, productsLoaded, categoriesLoaded) => cartLoaded && productsLoaded && categoriesLoaded
-)
+  (cartLoaded, productsLoaded, categoriesLoaded) =>
+    cartLoaded && productsLoaded && categoriesLoaded
+);
