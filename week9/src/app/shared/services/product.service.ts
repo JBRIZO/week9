@@ -23,7 +23,7 @@ export class ProductService {
     return this.http.get<ProductList>(
       `${
         this.url
-      }?include=image_attachment.blob,master&[page][number]=${page}&[page][size]=${size}&[filter][name_start]=${name}&[filter][category_id_eq]=${
+      }?include=category,image_attachment.blob,master&[page][number]=${page}&[page][size]=${size}&[filter][name_start]=${name}&[filter][category_id_eq]=${
         categoryId === null ? '' : categoryId
       }`
     );
