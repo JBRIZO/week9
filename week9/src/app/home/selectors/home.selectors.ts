@@ -47,3 +47,26 @@ export const selectAllProductEntities = createSelector(
 
 export const selectProductById = (id: number) =>
   createSelector(selectAllProductEntities, (entities) => entities[id]);
+
+export const isCartLoaded = createSelector(
+  selectCartState,
+  state => state.cartFetched
+)
+
+export const areProductsLoaded = createSelector(
+  selectHomeState,
+  state => state.products !== undefined
+)
+
+export const areCategoriesLoaded = createSelector(
+  selectCategoryState,
+  state => state.categoriesFetched
+)
+
+export const stateLoaded = createSelector(
+  selectHomeState,
+  isCartLoaded,
+  areProductsLoaded,
+  areCategoriesLoaded,
+  (cartLoaded, productsLoaded, categoriesLoaded) => cartLoaded && productsLoaded && categoriesLoaded
+)

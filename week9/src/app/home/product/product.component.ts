@@ -52,11 +52,6 @@ export class ProductComponent implements OnInit {
           this.store.dispatch(
             addCartItem({ cart: response.items[response.items.length - 1] })
           );
-        },
-        (error) => {
-          this.snackBar.open('An error ocurred!', '', {
-            duration: 3000,
-          });
         }
       );
   }

@@ -18,9 +18,15 @@ import { ProductList } from 'src/app/shared/interfaces/productlist.interface';
 
 export const homeFeatureKey = 'home';
 
-interface CategoriesState extends EntityState<Category> {}
-interface CartState extends EntityState<CartItem> {}
-interface ProductsState extends EntityState<Product> {}
+interface CategoriesState extends EntityState<Category> {
+  categoriesFetched : boolean
+}
+interface CartState extends EntityState<CartItem> {
+  cartFetched: boolean
+}
+interface ProductsState extends EntityState<Product> {
+  productsFetched: boolean
+}
 const productsAdapter = createEntityAdapter<Product>();
 const categoriesAdapter = createEntityAdapter<Category>();
 const cartAdapter = createEntityAdapter<CartItem>();
@@ -33,10 +39,11 @@ export interface HomeState {
 }
 
 export const initialHomeState: HomeState = {
-  categories: categoriesAdapter.getInitialState(),
-  cartItems: cartAdapter.getInitialState(),
+  categories: categoriesAdapter.getInitialState({ categoriesFetched: false }),
+  cartItems: cartAdapter.getInitialState({ cartFetched: false}),
   paginatedProducts: undefined,
-  products: productsAdapter.getInitialState(),
+  products: productsAdapter.getInitialState( {productsFetched: false }),
+
 };
 
 export const homeReducer = createReducer(
@@ -52,7 +59,7 @@ export const homeReducer = createReducer(
       ...state,
       categories: categoriesAdapter.addMany(
         action.categories,
-        state.categories
+        {...state.categories, categoriesFetched: true}
       ),
     };
   }),
@@ -65,14 +72,14 @@ export const homeReducer = createReducer(
   on(HomeActions.cartLoaded, (state, action) => {
     return {
       ...state,
-      cartItems: cartAdapter.addMany(action.cart, state.cartItems),
+      cartItems: cartAdapter.addMany(action.cart, {...state.cartItems, cartFetched: true}),
     };
   }),
   on(HomeActions.allProductsLoaded, (state, action) => {
     return {
       ...state,
       paginatedProducts: action.products,
-      products: productsAdapter.addMany(action.products.data, state.products),
+      products: productsAdapter.addMany(action.products.data, {...state.products, coursesFetched: true}),
     };
   }),
   on(HomeActions.cartItemUpdated, (state, action) => {

@@ -33,6 +33,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
+        console.log(error.error.errors)
+        let errorMessage : Error = new Error('')
         if (error.status === 401 && !error.url!.includes('/users/login')) {
           this.snackbar
             .open('You need to login to perform this action.', 'Go to Login')
@@ -40,18 +42,27 @@ export class AuthInterceptor implements HttpInterceptor {
             .subscribe(() => {
               this.router.navigate(['/login']);
             });
+        }else{
+          errorMessage.message = this.getErrorMessage(error.error.errors[0].code)
+          this.snackbar.open(errorMessage.message, '',{duration : 4000})
         }
-        if (error.status === 500) {
-          this.snackbar.open(
-            'An unexpected error ocurred. Please try again later',
-            '',
-            {
-              duration: 3000,
-            }
-          );
-        }
-        return throwError(error);
+        return throwError(errorMessage);
       })
     );
+  }
+
+  getErrorMessage(code : string) : string {
+    let message = "Unexpected error"
+    switch(code){
+      case "4e6f7420656e6f7567682073746f636b":
+        message = "Not enough stock."
+        break;
+      case "4974656d2070726f647563745f76617269616e745f6964206973206e6f7420756e6971756520706572206f72646572":
+        message = "Item already added."
+        break;
+      case "63616e277420626520626c616e6b":
+        message = "No items in the cart"
+    }
+    return message
   }
 }

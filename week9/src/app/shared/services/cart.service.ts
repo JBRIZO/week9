@@ -39,22 +39,6 @@ export class CartService {
       .pipe(
         map((response) => {
           return response.data;
-        }),
-        catchError((error: HttpErrorResponse) => {
-          let errorMessage: Error = new Error('');
-
-          if (error.error.errors.code === '4e6f7420656e6f7567682073746f636b') {
-            errorMessage.message = 'Not enough stock.';
-          }
-
-          if (
-            error.error.errors.code ===
-            '4974656d2070726f647563745f76617269616e745f6964206973206e6f7420756e6971756520706572206f72646572'
-          ) {
-            errorMessage.message = 'Item already added';
-          }
-
-          return throwError(errorMessage);
         })
       );
   }
@@ -78,6 +62,7 @@ export class CartService {
           return response.data;
         }),
         catchError((error: HttpErrorResponse) => {
+          console.log(error)
           let errorMessage: Error = new Error('');
           if (error.status === 422) {
             errorMessage.message = 'There are no items in the cart.';

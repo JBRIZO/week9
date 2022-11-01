@@ -3,7 +3,6 @@ import { select, Store } from '@ngrx/store';
 import { CartItem } from 'src/app/shared/interfaces/cartitem.interface';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { HomeState } from '../reducers/home.reducers';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { HomeActions } from '../action-types';
 import { Product } from 'src/app/shared/interfaces/product.interface';
 import { selectProductById } from '../selectors/home.selectors';
@@ -21,7 +20,6 @@ export class CartDetailsListComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private store: Store<HomeState>,
-    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {}
@@ -43,11 +41,6 @@ export class CartDetailsListComponent implements OnInit {
         this.removeItemFromArray(item.id!);
         this.store.dispatch(HomeActions.cartItemRemoved({ item: item }));
       },
-      (error: Error) => {
-        this.snackBar.open(error.message, '', { duration: 3000 });
-        this.store.dispatch(HomeActions.cartItemRemoved({ item: item }));
-      },
-      () => {}
     );
   }
 
