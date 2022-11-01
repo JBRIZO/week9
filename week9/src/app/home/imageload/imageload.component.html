@@ -1,0 +1,6 @@
+
+<div class="container">
+    <mat-spinner *ngIf="loading"></mat-spinner>
+    <img [hidden]="loading" [src]="image?.url" onerror="this.src='assets/images/image-not-found.png'" (load)="imageLoaded()">
+</div>
+

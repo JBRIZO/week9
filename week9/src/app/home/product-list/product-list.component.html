@@ -52,12 +52,7 @@
               *ngFor="let product of products; let i = index"
             >
               <div class="product-list-item">
-                <img
-                  [src]="product.image?.url"
-                  [alt]="product.name"
-                  [routerLink]="['/home/products', product.id]"
-                  onerror="this.src='assets/images/image-not-found.png'"
-                />
+                <app-imageload [image]="product!.image!" [routerLink]="['/home/products', product.id]"></app-imageload>
                 <app-like-controls [product]="product"></app-like-controls>
                 <h2 [routerLink]="['/home/products', product.id]">
                   {{ product.name }}

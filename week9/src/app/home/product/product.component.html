@@ -5,11 +5,7 @@
   </div>
   <div class="wrapper" *ngIf="!loading">
     <div class="product-img">
-      <img
-        [src]="product.image?.url"
-        alt=""
-        onerror="this.src='assets/images/image-not-found.png'"
-      />
+      <app-imageload [image]="product!.image!"></app-imageload>
       <app-like-controls [product]="product"></app-like-controls>
     </div>
     <div class="product-information">

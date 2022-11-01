@@ -19,6 +19,7 @@ import { HomeEffects } from './home.effects';
 import { ProductsResolver } from './resolvers/products.resolver';
 import { ItemsTotalPipe } from './pipes/items-total.pipe';
 import { LikeControlsComponent } from './like-controls/like-controls.component';
+import { ImageloadComponent } from './imageload/imageload.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { LikeControlsComponent } from './like-controls/like-controls.component';
     NavBarComponent,
     ItemsTotalPipe,
     LikeControlsComponent,
+    ImageloadComponent
   ],
   imports: [
     CommonModule,

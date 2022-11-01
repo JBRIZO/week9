@@ -9,9 +9,11 @@
     height: 150px;
     gap: 10px;
 
-    img {
-      width: 250px;
-      object-fit: contain;
+    app-imageload {
+      width: 300px;
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     .detail-data {
