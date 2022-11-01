@@ -7,7 +7,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HomeActions } from '../action-types';
 import { Product } from 'src/app/shared/interfaces/product.interface';
 import { selectProductById } from '../selectors/home.selectors';
-import { Update } from '@ngrx/entity'
+import { Update } from '@ngrx/entity';
+import { cartItemUpdated } from '../home.actions';
 
 @Component({
   selector: 'app-cart-details-list',
@@ -17,8 +18,6 @@ import { Update } from '@ngrx/entity'
 export class CartDetailsListComponent implements OnInit {
   @Input() cartItems!: CartItem[] | null;
 
-  items!: CartItem[]
-
   constructor(
     private cartService: CartService,
     private store: Store<HomeState>,
@@ -26,8 +25,6 @@ export class CartDetailsListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.items = this.cartItems!
-    this.items[0].quantity = 0
   }
 
   getProduct(productId: number): Product | undefined {
@@ -60,23 +57,26 @@ export class CartDetailsListComponent implements OnInit {
   }
 
   modifyCartItem(cartItemIndex: number, quantity: string): void {
-    const parsedQuantity = parseInt(quantity)
-
-    const newCartItem : CartItem = {
+    const parsedQuantity = parseInt(quantity);
+    const newCartItem: CartItem = {
       ...this.cartItems![cartItemIndex],
-      quantity: parsedQuantity
-    }
-
-    const update : Update<CartItem> = { 
+      quantity: parsedQuantity,
+    };
+    const update: Update<CartItem> = {
       id: newCartItem.id!,
-      changes: newCartItem
-    }
+      changes: newCartItem,
+    };
 
+    this.store.dispatch(cartItemUpdated({update}))
+  }
 
-    }
-    // this.store.dispatch(
-    //   HomeActions.cartItemUpdated
-    //   HomeActions.modifyCart({ item: this.cartItems![cartItemIndex] })
-    // );
-  // }
+  decrement(quantity: string): string {
+    const result = parseInt(quantity) - 1
+    return result.toString();
+  }
+
+  increment(quantity: string): string {
+    const result = parseInt(quantity) + 1
+    return result.toString();
+  }
 }

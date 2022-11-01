@@ -2,7 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { CartItem } from '../shared/interfaces/cartitem.interface';
 import { Category } from '../shared/interfaces/category.interface';
 import { ProductList } from '../shared/interfaces/productlist.interface';
-import { Update } from '@ngrx/entity'
+import { Update } from '@ngrx/entity';
 
 export const loadCategories = createAction('[Product-List] Load Categories');
 
@@ -38,7 +38,7 @@ export const allProductsLoaded = createAction(
   props<{ products: ProductList }>()
 );
 
-export const cartItemUpdated = createAction (
+export const cartItemUpdated = createAction(
   '[Cart] Cart Item Updated',
-  props<{update : Update<CartItem>}>()
-)
+  props<{ update: Update<CartItem> }>()
+);

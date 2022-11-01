@@ -76,6 +76,12 @@ export const homeReducer = createReducer(
       paginatedProducts: action.products,
       products: productsAdapter.addMany(action.products.data, state.products),
     };
+  }),
+  on(HomeActions.cartItemUpdated, (state,action) => {
+    return {
+      ...state,
+      cartItems: cartAdapter.updateOne(action.update, state.cartItems)
+    }
   })
 );
 

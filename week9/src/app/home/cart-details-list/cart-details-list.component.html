@@ -9,29 +9,28 @@
       />
       <div class="detail-data">
         <div class="row space-between">
-          <h2 class="product-name" [routerLink]="['/home/products', item.product_id]"
-          >{{ item.name }}</h2>
+          <h2
+            class="product-name"
+            [routerLink]="['/home/products', item.product_id]"
+          >
+            {{ item.name }}
+          </h2>
           <p class="price">$ {{ item.price | number: "1.2" }}</p>
         </div>
         <div class="row">
           <label>Quantity:</label>
           <div class="quantity-picker">
-            <mat-icon
-              (click)="
-                cartItems![i].quantity =
-                  cartItems![i].quantity === 1 ? 1 : cartItems![i].quantity - 1
-              "
+            <mat-icon (click)="quantity.value = decrement(quantity.value); modifyCartItem(i,quantity.value)"
               >remove</mat-icon
             >
             <input
-              [(ngModel)]="cartItems![i].quantity"
+              #quantity
               min="1"
               type="number"
-              id="input{{ item.id }}"
+              [value]="cartItems![i].quantity"
               disabled
             />
-            <mat-icon
-              (click)="cartItems![i].quantity = cartItems![i].quantity + 1"
+            <mat-icon (click)="quantity.value = increment(quantity.value); modifyCartItem(i,quantity.value)"
               >add</mat-icon
             >
           </div>
