@@ -4,12 +4,17 @@
       <img
         [src]="getProduct(item.product_id)?.image?.url"
         [alt]="item.name"
-        [routerLink]="['/home/products', item.id]"
+        [routerLink]="['/home/products', item.product_id]"
         onerror="this.src='assets/images/image-not-found.png'"
       />
       <div class="detail-data">
         <div class="row space-between">
-          <h2 class="product-name">{{ item.name }}</h2>
+          <h2
+            class="product-name"
+            [routerLink]="['/home/products', item.product_id]"
+          >
+            {{ item.name }}
+          </h2>
           <p class="price">$ {{ item.price | number: "1.2" }}</p>
         </div>
         <div class="row">

@@ -30,8 +30,8 @@ export class ProductListComponent implements OnInit {
   categories$?: Observable<Category[]>;
   loadingCategories = false;
 
-  products$!: Observable<Product[]>;
-  loadingProducts = false;
+  products!: Product[];
+  loadingProducts = true;
 
   selectedCategoryFilter?: number | null = null;
   name: string = '';
@@ -44,16 +44,17 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.categories$ = this.store.pipe(select(selectAllCategories));
-    this.products$ = this.store.pipe(
-      select(selectAllProducts),
-      map((response) => {
-        this.totalRows = response === undefined ? 0 : response.meta!.total;
-        (this.pageSize = response === undefined ? 0 : response.meta!.per_page),
-          (this.currentPage =
-            response === undefined ? 0 : response.meta!.current_page - 1);
-        return response?.data;
-      })
-    );
+
+    this.store.pipe(select(selectAllProducts)).subscribe((response) => {
+      if (response !== undefined) {
+        this.products = response.data;
+        this.loadingProducts = false
+      }
+      this.totalRows = response === undefined ? 0 : response.meta!.total;
+      (this.pageSize = response === undefined ? 0 : response.meta!.per_page),
+        (this.currentPage =
+          response === undefined ? 0 : response.meta!.current_page - 1);
+    });
   }
 
   pageChanged(event: PageEvent) {

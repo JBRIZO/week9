@@ -2,8 +2,8 @@
   <mat-progress-bar
     mode="determinate"
     value="{{
-      (product.likes_up_count /
-        (product.likes_up_count + product.likes_down_count)) *
+      (likesUp /
+        (likesUp + likesDown)) *
         100
     }}"
   ></mat-progress-bar>
@@ -11,10 +11,10 @@
     <label
       ><mat-icon class="like-button" (click)="likeProduct()"
         >thumb_up_alt_outline</mat-icon
-      >{{ product.likes_up_count }}</label
+      >{{ likesUp }}</label
     >
     <label
-      >{{ product.likes_down_count
+      >{{ likesDown
       }}<mat-icon class="dislike-button" (click)="dislikeProduct()"
         >thumb_down_alt</mat-icon
       ></label

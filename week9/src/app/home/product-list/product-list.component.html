@@ -47,12 +47,9 @@
             style="height: 90%; align-self: center"
           ></mat-divider>
           <div class="grid-container">
-            <!-- <div *ngIf="productList.data.length === 0" class="not-found">
-              Product not found.
-            </div> -->
             <div
               class="grid-item"
-              *ngFor="let product of products$ | async; let i = index"
+              *ngFor="let product of products; let i = index;"
             >
               <div class="product-list-item">
                 <img

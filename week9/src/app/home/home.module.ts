@@ -19,6 +19,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { HomeEffects } from './home.effects';
 import { ProductsResolver } from './resolvers/products.resolver';
 import { ItemsTotalPipe } from './pipes/items-total.pipe';
+import { LikeControlsComponent } from './like-controls/like-controls.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ItemsTotalPipe } from './pipes/items-total.pipe';
     CartDetailsListComponent,
     NavBarComponent,
     ItemsTotalPipe,
+    LikeControlsComponent,
   ],
   imports: [
     CommonModule,

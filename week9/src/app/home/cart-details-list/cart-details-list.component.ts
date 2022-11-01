@@ -24,12 +24,16 @@ export class CartDetailsListComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   getProduct(productId: number): Product | undefined {
-    let product : Product | undefined= undefined
-    this.store.pipe(select(selectProductById(productId))).subscribe( (response) => {product = response});
-    return product
+    let product: Product | undefined = undefined;
+    this.store
+      .pipe(select(selectProductById(productId)))
+      .subscribe((response) => {
+        product = response;
+      });
+    return product;
   }
 
   deleteCartItem(cartItemIndex: number): void {
