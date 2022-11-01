@@ -41,6 +41,12 @@ export class CartDetailsListComponent implements OnInit {
         this.removeItemFromArray(item.id!);
         this.store.dispatch(HomeActions.cartItemRemoved({ item: item }));
       },
+      () => {
+        if(this.cartItems?.length === 1){
+          this.removeItemFromArray(item.id!);
+          this.store.dispatch(HomeActions.cartItemRemoved({ item: item }));
+        }
+      }
     );
   }
 
