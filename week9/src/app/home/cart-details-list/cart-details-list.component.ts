@@ -1,12 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { CartItem } from 'src/app/shared/interfaces/cartitem.interface';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { HomeState } from '../reducers/home.reducers';
-import { tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HomeActions } from '../action-types';
 import { Product } from 'src/app/shared/interfaces/product.interface';
+import { selectProductById } from '../selectors/home.selectors';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart-details-list',
@@ -22,12 +24,13 @@ export class CartDetailsListComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  // getProduct(productId) : Product {
-  //   this.store.subscribe((state) => {
-  //   })
-  // }
+  getProduct(productId: number): Product | undefined {
+    let product : Product | undefined= undefined
+    this.store.pipe(select(selectProductById(productId))).subscribe( (response) => {product = response});
+    return product
+  }
 
   deleteCartItem(cartItemIndex: number): void {
     const item = this.cartItems![cartItemIndex];

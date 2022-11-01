@@ -33,9 +33,8 @@ export class ProductListComponent implements OnInit {
   products$!: Observable<Product[]>;
   loadingProducts = false;
 
-
   selectedCategoryFilter?: number | null = null;
-  name : string = ''
+  name: string = '';
 
   constructor(
     private cartService: CartService,
@@ -60,7 +59,7 @@ export class ProductListComponent implements OnInit {
   pageChanged(event: PageEvent) {
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
-    this.getProducts()
+    this.getProducts();
   }
 
   getProducts() {
@@ -69,7 +68,7 @@ export class ProductListComponent implements OnInit {
         page: this.currentPage + 1,
         size: this.pageSize,
         categoryId: this.selectedCategoryFilter!,
-        name: this.name
+        name: this.name,
       })
     );
   }

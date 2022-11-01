@@ -6,8 +6,8 @@ import { Product } from 'src/app/shared/interfaces/product.interface';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { addCartItem } from '../home.actions';
-import {selectProductById} from '../selectors/home.selectors';
-import { Observable } from 'rxjs'
+import { selectProductById } from '../selectors/home.selectors';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product',
@@ -27,20 +27,18 @@ export class ProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('productId')!)
-    this.store.pipe(
-      select(selectProductById(id))
-    ).subscribe(
+    const id = parseInt(this.route.snapshot.paramMap.get('productId')!);
+    this.store.pipe(select(selectProductById(id))).subscribe(
       (response) => {
-        if(response !== undefined){
-          this.product = response!
+        if (response !== undefined) {
+          this.product = response!;
         }
       },
       () => {},
       () => {
-        this.loading = false
+        this.loading = false;
       }
-    )
+    );
   }
 
   addToCart(quantity: string): void {

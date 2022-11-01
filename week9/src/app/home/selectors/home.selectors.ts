@@ -38,14 +38,12 @@ export const selectAllProducts = createSelector(
 export const selectProductEntityState = createSelector(
   selectHomeState,
   fromHome.selectProductState
-)
+);
 
 export const selectAllProductEntities = createSelector(
   selectProductEntityState,
   fromHome.selectEntities
-)
+);
 
-export const selectProductById = (id : number) => createSelector(
-  selectAllProductEntities,
-  entities => entities[id]
-)
+export const selectProductById = (id: number) =>
+  createSelector(selectAllProductEntities, (entities) => entities[id]);

@@ -1,9 +1,6 @@
 <app-nav-bar></app-nav-bar>
 <div class="container">
-  <div class="spinner-container" *ngIf="loading">
-    <mat-spinner></mat-spinner>
-  </div>
-  <div class="wrapper" *ngIf="!loading">
+  <div class="wrapper">
     <mat-card class="cart-card">
       <mat-card-title>Cart Items</mat-card-title>
       <span class="price-label">Price</span>
@@ -15,8 +12,8 @@
       </mat-card-content>
       <mat-card-actions>
         <div class="subtotal">
-          <h3>Subtotal({{ cart.items.length }} items):</h3>
-          <p class="price">$ {{ cart.items | itemsTotal }}</p>
+          <h3>Subtotal({{ (cartItems$ | async)!.length }} items):</h3>
+          <p class="price">$ {{ (cartItems$ | async)! | itemsTotal }}</p>
           <button mat-raised-button color="primary">Proceed to Checkout</button>
         </div>
       </mat-card-actions>

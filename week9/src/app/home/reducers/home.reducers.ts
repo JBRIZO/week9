@@ -38,7 +38,7 @@ export const initialHomeState: HomeState = {
   categories: categoriesAdapter.getInitialState(),
   cartItems: cartAdapter.getInitialState(),
   paginatedProducts: undefined,
-  products: productsAdapter.getInitialState()
+  products: productsAdapter.getInitialState(),
 };
 
 export const homeReducer = createReducer(
@@ -80,7 +80,7 @@ export const homeReducer = createReducer(
     return {
       ...state,
       paginatedProducts: action.products,
-      products: productsAdapter.addMany(action.products.data,state.products)
+      products: productsAdapter.addMany(action.products.data, state.products),
     };
   })
 );
@@ -93,4 +93,5 @@ export const selectCartState = (state: HomeState) => state.cartItems;
 export const { selectAll: selectAllCartItems } = cartAdapter.getSelectors();
 
 export const selectProductState = (state: HomeState) => state.products;
-export const { selectAll: selectAllProducts, selectEntities } = productsAdapter.getSelectors()
+export const { selectAll: selectAllProducts, selectEntities } =
+  productsAdapter.getSelectors();

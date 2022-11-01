@@ -1,7 +1,12 @@
 <div class="container">
   <div *ngFor="let item of cartItems; let i = index">
     <div class="detail-item">
-      <img src="assets/images/image-not-found.png" alt="" />
+      <img
+        [src]="getProduct(item.product_id)?.image?.url"
+        [alt]="item.name"
+        [routerLink]="['/home/products', item.id]"
+        onerror="this.src='assets/images/image-not-found.png'"
+      />
       <div class="detail-data">
         <div class="row space-between">
           <h2 class="product-name">{{ item.name }}</h2>
