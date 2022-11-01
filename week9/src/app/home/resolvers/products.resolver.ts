@@ -20,7 +20,7 @@ export class ProductsResolver implements Resolve<any> {
       tap(() => {
         if (!this.loading) {
           this.loading = true;
-          this.store.dispatch(HomeActions.loadProducts());
+          this.store.dispatch(HomeActions.loadProducts({}));
           this.store.dispatch(HomeActions.loadCategories());
           this.store.dispatch(HomeActions.loadCart());
         }

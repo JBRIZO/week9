@@ -7,11 +7,14 @@ import { ProductService } from 'src/app/shared/services/product.service';
 import { select, Store } from '@ngrx/store';
 import { HomeState } from '../reducers/home.reducers';
 import { Observable } from 'rxjs';
-import { selectAllCategories } from '../selectors/home.selectors';
+import { map } from 'rxjs/operators';
+import {
+  selectAllCategories,
+  selectAllProducts,
+} from '../selectors/home.selectors';
 import { Category } from 'src/app/shared/interfaces/category.interface';
-import { CartItem } from 'src/app/shared/interfaces/cartitem.interface';
-import { addCartItem } from '../home.actions';
 import { HomeActions } from '../action-types';
+import { Product } from 'src/app/shared/interfaces/product.interface';
 
 @Component({
   selector: 'app-product-list',
@@ -24,16 +27,17 @@ export class ProductListComponent implements OnInit {
   currentPage = 0;
   pageSizeOptions: number[] = [5, 10, 25];
 
-  productList!: ProductList;
-  loadingProducts = true;
-
   categories$?: Observable<Category[]>;
   loadingCategories = false;
 
+  products$!: Observable<Product[]>;
+  loadingProducts = false;
+
+
   selectedCategoryFilter?: number | null = null;
+  name : string = ''
 
   constructor(
-    private productService: ProductService,
     private cartService: CartService,
     private snackBar: MatSnackBar,
     private store: Store<HomeState>
@@ -41,38 +45,33 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.categories$ = this.store.pipe(select(selectAllCategories));
-    this.getProducts();
-  }
-
-  getProducts(nameSearched?: string): void {
-    this.productService
-      .getProducts(
-        this.currentPage + 1,
-        this.pageSize,
-        nameSearched,
-        this.selectedCategoryFilter!
-      )
-      .subscribe(
-        (response: ProductList) => {
-          this.productList = response;
-          this.currentPage = response.meta?.current_page! - 1;
-          this.totalRows = response.meta?.total!;
-        },
-        () => {},
-        () => {
-          this.loadingProducts = false;
-        }
-      );
+    this.products$ = this.store.pipe(
+      select(selectAllProducts),
+      map((response) => {
+        this.totalRows = response === undefined ? 0 : response.meta!.total;
+        (this.pageSize = response === undefined ? 0 : response.meta!.per_page),
+          (this.currentPage =
+            response === undefined ? 0 : response.meta!.current_page - 1);
+        return response?.data;
+      })
+    );
   }
 
   pageChanged(event: PageEvent) {
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
-    this.getProducts();
+    this.getProducts()
   }
 
-  searchByName(nameSearched: string) {
-    this.getProducts(nameSearched);
+  getProducts() {
+    this.store.dispatch(
+      HomeActions.loadProducts({
+        page: this.currentPage + 1,
+        size: this.pageSize,
+        categoryId: this.selectedCategoryFilter!,
+        name: this.name
+      })
+    );
   }
 
   addItemToCart(itemId: number) {

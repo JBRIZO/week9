@@ -24,7 +24,14 @@ export class HomeEffects {
   loadProducts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(HomeActions.loadProducts),
-      concatMap((action) => this.productsService.getProducts()),
+      concatMap((action) =>
+        this.productsService.getProducts(
+          action.page,
+          action.size,
+          action.name,
+          action.categoryId
+        )
+      ),
       map((products) => allProductsLoaded({ products }))
     )
   );

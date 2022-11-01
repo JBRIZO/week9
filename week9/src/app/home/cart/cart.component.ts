@@ -15,18 +15,19 @@ import { selectAllCartItems } from '../selectors/home.selectors';
 export class CartComponent implements OnInit {
   cart!: Cart;
 
-  cartItems$! : Observable<CartItem[]>
-  subTotal = 0
+  cartItems$!: Observable<CartItem[]>;
+  subTotal = 0;
 
   loading = true;
 
-  constructor(private cartService: CartService, private store : Store<HomeState>) {}
+  constructor(
+    private cartService: CartService,
+    private store: Store<HomeState>
+  ) {}
 
   ngOnInit(): void {
     this.getCart();
-    this.cartItems$ = this.store.pipe(
-      select(selectAllCartItems)
-    )
+    this.cartItems$ = this.store.pipe(select(selectAllCartItems));
   }
 
   getCart(): void {

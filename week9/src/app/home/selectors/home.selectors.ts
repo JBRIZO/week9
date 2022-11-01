@@ -29,3 +29,8 @@ export const selectCartItemsCount = createSelector(
   selectHomeState,
   (state) => state.cartItems.ids.length
 );
+
+export const selectAllProducts = createSelector(
+  selectHomeState,
+  (state) => state.products!
+);

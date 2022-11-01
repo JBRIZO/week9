@@ -8,8 +8,8 @@
         <h1>Products</h1>
         <div class="search-bar">
           <label for="nameSearch">Search by name:</label>
-          <input type="text" #name id="nameSearch" />
-          <button (click)="searchByName(name.value)" class="search-button">
+          <input [(ngModel)]="name" type="text" id="nameSearch" />
+          <button (click)="getProducts()" class="search-button">
             <mat-icon>search</mat-icon>
           </button>
         </div>
@@ -47,20 +47,21 @@
             style="height: 90%; align-self: center"
           ></mat-divider>
           <div class="grid-container">
-            <div *ngIf="productList.data.length === 0" class="not-found">
+            <!-- <div *ngIf="productList.data.length === 0" class="not-found">
               Product not found.
-            </div>
+            </div> -->
             <div
               class="grid-item"
-              *ngFor="let product of productList.data; let i = index"
+              *ngFor="let product of products$ | async; let i = index"
             >
               <div class="product-list-item">
-                <img
+                <img src="assets/images/image-not-found.png" />
+                <!-- <img
                   [src]="product.image?.url"
                   [alt]="product.name"
                   [routerLink]="['/home/products', product.slug]"
                   onerror="this.src='assets/images/image-not-found.png'"
-                />
+                /> -->
                 <app-like-controls [product]="product"></app-like-controls>
                 <h2 [routerLink]="['/home/products', product.slug]">
                   {{ product.name }}

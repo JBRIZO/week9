@@ -2,6 +2,8 @@ import { createAction, props } from '@ngrx/store';
 import { Cart } from '../shared/interfaces/cart.interface';
 import { CartItem } from '../shared/interfaces/cartitem.interface';
 import { Category } from '../shared/interfaces/category.interface';
+import { Pagination } from '../shared/interfaces/pagination.interface';
+import { Product } from '../shared/interfaces/product.interface';
 import { ProductList } from '../shared/interfaces/productlist.interface';
 
 export const loadCategories = createAction('[Product-List] Load Categories');
@@ -28,7 +30,15 @@ export const cartItemRemoved = createAction(
   props<{ item: CartItem }>()
 );
 
-export const loadProducts = createAction('[Product-List] Load Products');
+export const modifyCart = createAction(
+  '[Cart] Modify Cart Item',
+  props<{ item: CartItem }>()
+);
+
+export const loadProducts = createAction(
+  '[Product-List] Load Products',
+  props<{ page?: number; size?: number; name?: string; categoryId?: number }>()
+);
 
 export const allProductsLoaded = createAction(
   '[Load Products Effect] Products Loaded',

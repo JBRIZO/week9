@@ -28,7 +28,7 @@ import { ItemsTotalPipe } from './pipes/items-total.pipe';
     CartComponent,
     CartDetailsListComponent,
     NavBarComponent,
-    ItemsTotalPipe
+    ItemsTotalPipe,
   ],
   imports: [
     CommonModule,

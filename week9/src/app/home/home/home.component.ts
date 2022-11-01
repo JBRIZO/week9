@@ -10,7 +10,5 @@ import { HomeState } from '../reducers/home.reducers';
 export class HomeComponent implements OnInit {
   constructor(private store: Store<HomeState>) {}
 
-  ngOnInit(): void {
-    // this.store.subscribe(state => console.log(state))
-  }
+  ngOnInit(): void {}
 }

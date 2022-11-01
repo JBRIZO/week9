@@ -25,22 +25,26 @@ export class CartDetailsListComponent implements OnInit {
 
   deleteCartItem(cartItemIndex: number): void {
     const item = this.cartItems![cartItemIndex];
-    this.cartService
-      .deleteItem(item.id!)
-      .subscribe(
-        () => {
-          this.removeItemFromArray(item.id!);
-          this.store.dispatch(HomeActions.cartItemRemoved({ item: item }));
-        },
-        (error: Error) => {
-          this.snackBar.open(error.message, '', { duration: 3000 });
-          this.store.dispatch(HomeActions.cartItemRemoved({ item: item }));
-        },
-        () => {}
-      );
+    this.cartService.deleteItem(item.id!).subscribe(
+      () => {
+        this.removeItemFromArray(item.id!);
+        this.store.dispatch(HomeActions.cartItemRemoved({ item: item }));
+      },
+      (error: Error) => {
+        this.snackBar.open(error.message, '', { duration: 3000 });
+        this.store.dispatch(HomeActions.cartItemRemoved({ item: item }));
+      },
+      () => {}
+    );
   }
 
-  removeItemFromArray(cartItemId: number) {
+  removeItemFromArray(cartItemId: number): void {
     this.cartItems = this.cartItems!.filter((item) => item.id !== cartItemId);
+  }
+
+  modifyCartItem(cartItemIndex: number): void {
+    this.store.dispatch(
+      HomeActions.modifyCart({ item: this.cartItems![cartItemIndex] })
+    );
   }
 }
