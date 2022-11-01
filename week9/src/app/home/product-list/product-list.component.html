@@ -55,15 +55,14 @@
               *ngFor="let product of products$ | async; let i = index"
             >
               <div class="product-list-item">
-                <img src="assets/images/image-not-found.png" />
-                <!-- <img
+                <img
                   [src]="product.image?.url"
                   [alt]="product.name"
-                  [routerLink]="['/home/products', product.slug]"
+                  [routerLink]="['/home/products', product.id]"
                   onerror="this.src='assets/images/image-not-found.png'"
-                /> -->
+                />
                 <app-like-controls [product]="product"></app-like-controls>
-                <h2 [routerLink]="['/home/products', product.slug]">
+                <h2 [routerLink]="['/home/products', product.id]">
                   {{ product.name }}
                 </h2>
                 <p class="description">{{ product.description }}</p>

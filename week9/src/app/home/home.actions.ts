@@ -36,11 +36,11 @@ export const modifyCart = createAction(
 );
 
 export const loadProducts = createAction(
-  '[Product-List] Load Products',
+  '[Product-List] Load Products Pagination',
   props<{ page?: number; size?: number; name?: string; categoryId?: number }>()
 );
 
 export const allProductsLoaded = createAction(
-  '[Load Products Effect] Products Loaded',
+  '[Load Products Effect] Paginated Products Loaded',
   props<{ products: ProductList }>()
 );

@@ -32,5 +32,20 @@ export const selectCartItemsCount = createSelector(
 
 export const selectAllProducts = createSelector(
   selectHomeState,
-  (state) => state.products!
+  (state) => state.paginatedProducts!
 );
+
+export const selectProductEntityState = createSelector(
+  selectHomeState,
+  fromHome.selectProductState
+)
+
+export const selectAllProductEntities = createSelector(
+  selectProductEntityState,
+  fromHome.selectEntities
+)
+
+export const selectProductById = (id : number) => createSelector(
+  selectAllProductEntities,
+  entities => entities[id]
+)

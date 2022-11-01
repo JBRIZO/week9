@@ -6,6 +6,7 @@ import { HomeState } from '../reducers/home.reducers';
 import { tap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HomeActions } from '../action-types';
+import { Product } from 'src/app/shared/interfaces/product.interface';
 
 @Component({
   selector: 'app-cart-details-list',
@@ -22,6 +23,11 @@ export class CartDetailsListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
+  // getProduct(productId) : Product {
+  //   this.store.subscribe((state) => {
+  //   })
+  // }
 
   deleteCartItem(cartItemIndex: number): void {
     const item = this.cartItems![cartItemIndex];

@@ -22,6 +22,7 @@ export const homeFeatureKey = 'home';
 
 interface CategoriesState extends EntityState<Category> {}
 interface CartState extends EntityState<CartItem> {}
+interface ProductsState extends EntityState<Product> {}
 const productsAdapter = createEntityAdapter<Product>();
 const categoriesAdapter = createEntityAdapter<Category>();
 const cartAdapter = createEntityAdapter<CartItem>();
@@ -29,13 +30,15 @@ const cartAdapter = createEntityAdapter<CartItem>();
 export interface HomeState {
   categories: CategoriesState;
   cartItems: CartState;
-  products: ProductList | undefined;
+  paginatedProducts: ProductList | undefined;
+  products: ProductsState;
 }
 
 export const initialHomeState: HomeState = {
   categories: categoriesAdapter.getInitialState(),
-  cartItems: cartAdapter.getInitialState({ cartItem: undefined }),
-  products: undefined,
+  cartItems: cartAdapter.getInitialState(),
+  paginatedProducts: undefined,
+  products: productsAdapter.getInitialState()
 };
 
 export const homeReducer = createReducer(
@@ -76,7 +79,8 @@ export const homeReducer = createReducer(
   on(HomeActions.allProductsLoaded, (state, action) => {
     return {
       ...state,
-      products: action.products,
+      paginatedProducts: action.products,
+      products: productsAdapter.addMany(action.products.data,state.products)
     };
   })
 );
@@ -88,5 +92,5 @@ export const { selectAll: selectAllCategories } =
 export const selectCartState = (state: HomeState) => state.cartItems;
 export const { selectAll: selectAllCartItems } = cartAdapter.getSelectors();
 
-// export const selectProductState = (state: HomeState) => state.products;
-// export const { selectAll: selectAllProducts } = productsAdapter.getSelectors()
+export const selectProductState = (state: HomeState) => state.products;
+export const { selectAll: selectAllProducts, selectEntities } = productsAdapter.getSelectors()
