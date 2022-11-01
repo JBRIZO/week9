@@ -9,12 +9,8 @@
       />
       <div class="detail-data">
         <div class="row space-between">
-          <h2
-            class="product-name"
-            [routerLink]="['/home/products', item.product_id]"
-          >
-            {{ item.name }}
-          </h2>
+          <h2 class="product-name" [routerLink]="['/home/products', item.product_id]"
+          >{{ item.name }}</h2>
           <p class="price">$ {{ item.price | number: "1.2" }}</p>
         </div>
         <div class="row">

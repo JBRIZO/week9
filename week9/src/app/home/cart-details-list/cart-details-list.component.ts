@@ -3,12 +3,11 @@ import { select, Store } from '@ngrx/store';
 import { CartItem } from 'src/app/shared/interfaces/cartitem.interface';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { HomeState } from '../reducers/home.reducers';
-import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HomeActions } from '../action-types';
 import { Product } from 'src/app/shared/interfaces/product.interface';
 import { selectProductById } from '../selectors/home.selectors';
-import { Observable } from 'rxjs';
+import { Update } from '@ngrx/entity'
 
 @Component({
   selector: 'app-cart-details-list',
@@ -18,13 +17,18 @@ import { Observable } from 'rxjs';
 export class CartDetailsListComponent implements OnInit {
   @Input() cartItems!: CartItem[] | null;
 
+  items!: CartItem[]
+
   constructor(
     private cartService: CartService,
     private store: Store<HomeState>,
     private snackBar: MatSnackBar
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.items = this.cartItems!
+    this.items[0].quantity = 0
+  }
 
   getProduct(productId: number): Product | undefined {
     let product: Product | undefined = undefined;
@@ -55,9 +59,24 @@ export class CartDetailsListComponent implements OnInit {
     this.cartItems = this.cartItems!.filter((item) => item.id !== cartItemId);
   }
 
-  modifyCartItem(cartItemIndex: number): void {
-    this.store.dispatch(
-      HomeActions.modifyCart({ item: this.cartItems![cartItemIndex] })
-    );
-  }
+  modifyCartItem(cartItemIndex: number, quantity: string): void {
+    const parsedQuantity = parseInt(quantity)
+
+    const newCartItem : CartItem = {
+      ...this.cartItems![cartItemIndex],
+      quantity: parsedQuantity
+    }
+
+    const update : Update<CartItem> = { 
+      id: newCartItem.id!,
+      changes: newCartItem
+    }
+
+
+    }
+    // this.store.dispatch(
+    //   HomeActions.cartItemUpdated
+    //   HomeActions.modifyCart({ item: this.cartItems![cartItemIndex] })
+    // );
+  // }
 }

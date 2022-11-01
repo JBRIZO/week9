@@ -1,11 +1,7 @@
 <div class="like-controls">
   <mat-progress-bar
     mode="determinate"
-    value="{{
-      (likesUp /
-        (likesUp + likesDown)) *
-        100
-    }}"
+    value="{{ (likesUp / (likesUp + likesDown)) * 100 }}"
   ></mat-progress-bar>
   <div class="like-buttons">
     <label

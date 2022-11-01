@@ -48,7 +48,7 @@ export class ProductListComponent implements OnInit {
     this.store.pipe(select(selectAllProducts)).subscribe((response) => {
       if (response !== undefined) {
         this.products = response.data;
-        this.loadingProducts = false
+        this.loadingProducts = false;
       }
       this.totalRows = response === undefined ? 0 : response.meta!.total;
       (this.pageSize = response === undefined ? 0 : response.meta!.per_page),

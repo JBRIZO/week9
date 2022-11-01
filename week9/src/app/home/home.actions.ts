@@ -1,10 +1,8 @@
 import { createAction, props } from '@ngrx/store';
-import { Cart } from '../shared/interfaces/cart.interface';
 import { CartItem } from '../shared/interfaces/cartitem.interface';
 import { Category } from '../shared/interfaces/category.interface';
-import { Pagination } from '../shared/interfaces/pagination.interface';
-import { Product } from '../shared/interfaces/product.interface';
 import { ProductList } from '../shared/interfaces/productlist.interface';
+import { Update } from '@ngrx/entity'
 
 export const loadCategories = createAction('[Product-List] Load Categories');
 
@@ -30,11 +28,6 @@ export const cartItemRemoved = createAction(
   props<{ item: CartItem }>()
 );
 
-export const modifyCart = createAction(
-  '[Cart] Modify Cart Item',
-  props<{ item: CartItem }>()
-);
-
 export const loadProducts = createAction(
   '[Product-List] Load Products Pagination',
   props<{ page?: number; size?: number; name?: string; categoryId?: number }>()
@@ -44,3 +37,8 @@ export const allProductsLoaded = createAction(
   '[Load Products Effect] Paginated Products Loaded',
   props<{ products: ProductList }>()
 );
+
+export const cartItemUpdated = createAction (
+  '[Cart] Cart Item Updated',
+  props<{update : Update<CartItem>}>()
+)

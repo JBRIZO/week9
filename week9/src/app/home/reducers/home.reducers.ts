@@ -70,12 +70,6 @@ export const homeReducer = createReducer(
       cartItems: cartAdapter.addMany(action.cart, state.cartItems),
     };
   }),
-  on(HomeActions.modifyCart, (state, action) => {
-    return {
-      ...state,
-      cartItems: cartAdapter.setOne(action.item, state.cartItems),
-    };
-  }),
   on(HomeActions.allProductsLoaded, (state, action) => {
     return {
       ...state,
