@@ -41,7 +41,7 @@
 
       mat-card-actions {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
 
         .subtotal {
           display: flex;
@@ -49,7 +49,7 @@
           align-items: center;
           justify-content: right;
           gap: 5px;
-          width: 50%;
+          width: 100%;
 
           h3 {
             margin: 0;
@@ -68,3 +68,16 @@
   font-weight: 600;
   font-size: 20px;
 }
+
+@media screen and (max-width: 400px) {
+  .container {
+    .wrapper {
+        mat-card-actions {
+          .subtotal {
+            flex-direction: column;
+          }
+        }
+      }
+    }
+}
+
