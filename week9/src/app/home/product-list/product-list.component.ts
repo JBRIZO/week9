@@ -47,9 +47,9 @@ export class ProductListComponent implements OnInit {
         this.loadingProducts = false;
       }
       this.totalRows = response === undefined ? 0 : response.meta!.total;
-      (this.pageSize = response === undefined ? 0 : response.meta!.per_page),
+      (this.pageSize = response === undefined ? 0 : response.meta!.perPage),
         (this.currentPage =
-          response === undefined ? 0 : response.meta!.current_page - 1);
+          response === undefined ? 0 : response.meta!.currentPage - 1);
     });
   }
 

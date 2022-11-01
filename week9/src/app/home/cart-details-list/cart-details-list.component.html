@@ -2,16 +2,16 @@
   <div *ngFor="let item of cartItems; let i = index">
     <div class="detail-item">
       <img
-        [src]="getProduct(item.product_id)?.image?.url"
+        [src]="getProduct(item.productId)?.image?.url"
         [alt]="item.name"
-        [routerLink]="['/home/products', item.product_id]"
+        [routerLink]="['/home/products', item.productId]"
         onerror="this.src='assets/images/image-not-found.png'"
       />
       <div class="detail-data">
         <div class="row space-between">
           <h2
             class="product-name"
-            [routerLink]="['/home/products', item.product_id]"
+            [routerLink]="['/home/products', item.productId]"
           >
             {{ item.name }}
           </h2>

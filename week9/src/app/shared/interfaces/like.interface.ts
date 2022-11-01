@@ -1,4 +1,4 @@
 export interface Like {
-  product_id: number;
+  productId: number;
   kind: 'up' | 'down';
 }

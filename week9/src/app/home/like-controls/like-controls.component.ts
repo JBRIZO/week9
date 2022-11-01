@@ -16,8 +16,8 @@ export class LikeControlsComponent implements OnInit {
   constructor(private likeService: LikesService) {}
 
   ngOnInit(): void {
-    this.likesUp = this.product.likes_up_count;
-    this.likesDown = this.product.likes_down_count;
+    this.likesUp = this.product.likesUpCount;
+    this.likesDown = this.product.likesDownCount;
   }
 
   likeProduct(): void {

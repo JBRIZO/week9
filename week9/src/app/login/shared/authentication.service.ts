@@ -27,6 +27,7 @@ export class AuthenticationService {
           return true;
         }),
         catchError((response: HttpErrorResponse) => {
+          console.log("hola", response)
           if (response.status === 401) {
             const error = new Error('Invalid email or password');
             return throwError(error);

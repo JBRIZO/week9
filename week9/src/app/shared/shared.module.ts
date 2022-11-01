@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './helpers/auth.interceptor';
 import { LikesService } from './services/likes.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CamelCaseInterceptor } from './helpers/camel-case.interceptor';
 
 @NgModule({
   declarations: [],
@@ -41,6 +42,11 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     ProductService,
     CategoryService,
     CartService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CamelCaseInterceptor,
+      multi: true,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
