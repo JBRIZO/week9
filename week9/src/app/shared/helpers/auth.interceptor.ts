@@ -33,11 +33,10 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.log(error.error.errors)
         let errorMessage : Error = new Error('')
         if (error.status === 401 && !error.url!.includes('/users/login')) {
           this.snackbar
-            .open('You need to login to perform this action.', 'Go to Login')
+            .open('You need to login to perform this action.', 'Go to Login', {duration : 5000})
             .onAction()
             .subscribe(() => {
               this.router.navigate(['/login']);

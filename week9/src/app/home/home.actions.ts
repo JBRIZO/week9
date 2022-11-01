@@ -42,3 +42,7 @@ export const cartItemUpdated = createAction(
   '[Cart] Cart Item Updated',
   props<{ update: Update<CartItem> }>()
 );
+
+export const clearStore = createAction(
+  '[Logout Button] Clean store'
+)

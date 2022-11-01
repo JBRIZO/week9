@@ -87,6 +87,9 @@ export const homeReducer = createReducer(
       ...state,
       cartItems: cartAdapter.updateOne(action.update, state.cartItems),
     };
+  }),
+  on(HomeActions.clearStore, () => {
+    return initialHomeState
   })
 );
 

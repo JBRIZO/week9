@@ -32,12 +32,12 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.credentialStorageService.getStoredUser()!;
-
     this.cartItemCount$ = this.store.pipe(select(selectCartItemsCount));
   }
 
   logout(): void {
     this.credentialStorageService.signOut();
     this.router.navigate(['/login']);
+    this.store.dispatch(HomeActions.clearStore())
   }
 }

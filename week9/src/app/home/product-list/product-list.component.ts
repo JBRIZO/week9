@@ -73,21 +73,14 @@ export class ProductListComponent implements OnInit {
   addItemToCart(itemId: number) {
     this.cartService.addItem(itemId, 1).subscribe(
       (response) => {
+        this.snackBar.open('Item added succesfully!', '', {
+          duration: 2000,
+        });
         this.store.dispatch(
           HomeActions.addCartItem({
             cart: response.items[response.items.length - 1],
           })
         );
-      },
-      (error: Error) => {
-        this.snackBar.open(error.message, '', {
-          duration: 3000,
-        });
-      },
-      () => {
-        this.snackBar.open('Item added succesfully!', '', {
-          duration: 2000,
-        });
       }
     );
   }

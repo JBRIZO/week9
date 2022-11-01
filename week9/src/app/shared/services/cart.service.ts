@@ -60,14 +60,6 @@ export class CartService {
       .pipe(
         map((response) => {
           return response.data;
-        }),
-        catchError((error: HttpErrorResponse) => {
-          console.log(error)
-          let errorMessage: Error = new Error('');
-          if (error.status === 422) {
-            errorMessage.message = 'There are no items in the cart.';
-          }
-          return throwError(errorMessage);
         })
       );
   }

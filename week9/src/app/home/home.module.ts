@@ -6,7 +6,6 @@ import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductComponent } from './product/product.component';
-import { HomeGuard } from './home.guard';
 import { StoreModule } from '@ngrx/store';
 import * as fromHome from './reducers/home.reducers';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -42,6 +41,6 @@ import { LikeControlsComponent } from './like-controls/like-controls.component';
     MatMenuModule,
     EffectsModule.forRoot([HomeEffects]),
   ],
-  providers: [HomeGuard, ProductsResolver],
+  providers: [ProductsResolver],
 })
 export class HomeModule {}
