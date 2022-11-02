@@ -2,9 +2,12 @@
 
 ## Github Pages
 
-https://jbrizo.github.io/week9/login
+https://jbrizo.github.io/week9/
 
 
 ## Firebase
 
 https://week9-84927.web.app
+
+## Heroku
+
