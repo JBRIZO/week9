@@ -11,26 +11,26 @@ export class LikesService {
 
   constructor(private http: HttpClient) {}
 
-  likeProduct(product_id: number): Observable<boolean> {
+  likeProduct(product_id: number): Observable<Like> {
     return this.http
       .post<{ data: Like }>(this.url, {
         data: { product_id: product_id, kind: 'up' },
       })
       .pipe(
         map((response) => {
-          return true;
+          return response.data;
         })
       );
   }
 
-  dislikeProduct(product_id: number): Observable<boolean> {
+  dislikeProduct(product_id: number): Observable<Like> {
     return this.http
       .post<{ data: Like }>(this.url, {
         data: { product_id: product_id, kind: 'down' },
       })
       .pipe(
         map((response) => {
-          return false;
+          return response.data;
         })
       );
   }

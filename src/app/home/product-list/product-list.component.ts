@@ -53,13 +53,13 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  pageChanged(event: PageEvent) {
+  pageChanged(event: PageEvent) : void {
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
     this.getProducts();
   }
 
-  getProducts() {
+  getProducts() : void {
     this.store.dispatch(
       HomeActions.loadProducts({
         page: this.currentPage + 1,
@@ -70,7 +70,7 @@ export class ProductListComponent implements OnInit {
     );
   }
 
-  addItemToCart(itemId: number) {
+  addItemToCart(itemId: number) : void{
     this.cartService.addItem(itemId, 1).subscribe((response) => {
       this.snackBar.open('Item added succesfully!', '', {
         duration: 2000,

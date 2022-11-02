@@ -12,8 +12,4 @@ export class ImageloadComponent {
   loading = true;
 
   constructor() {}
-
-  imageLoaded() {
-    this.loading = false;
-  }
 }
