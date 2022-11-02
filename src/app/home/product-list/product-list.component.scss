@@ -172,9 +172,9 @@
   text-align: center;
 }
 
-@media screen and (min-width: 700px)  {
+@media screen and (min-width: 700px) {
   .container {
-    .grid-container{
+    .grid-container {
       grid-template-columns: repeat(3, minmax(200px, 1fr)) !important;
     }
   }
@@ -182,7 +182,7 @@
 
 @media screen and (min-width: 1000px) {
   .container {
-    .grid-container{
+    .grid-container {
       grid-template-columns: repeat(4, minmax(200px, 1fr)) !important;
     }
   }
@@ -190,12 +190,8 @@
 
 @media screen and (min-width: 1400px) {
   .container {
-    .grid-container{
+    .grid-container {
       grid-template-columns: repeat(6, minmax(200px, 1fr)) !important;
     }
   }
 }
-
-
-
-

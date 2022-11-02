@@ -47,6 +47,7 @@
             style="height: 90%; align-self: center"
           ></mat-divider>
           <div class="grid-container">
+            <div *ngIf="products.length === 0">No products found</div>
             <div
               class="grid-item"
               *ngFor="let product of products; let i = index"

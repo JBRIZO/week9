@@ -99,21 +99,20 @@
 
 @media screen and (max-width: 425px) {
   .container {
-
     .wrapper {
       .product-information {
         p {
           font-size: 14px;
         }
-  
+
         h1 {
           font-size: 22px;
         }
-  
+
         .price {
           font-size: 30px;
         }
-  
+
         mat-divider {
           width: 100%;
         }

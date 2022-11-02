@@ -72,12 +72,11 @@
 @media screen and (max-width: 400px) {
   .container {
     .wrapper {
-        mat-card-actions {
-          .subtotal {
-            flex-direction: column;
-          }
+      mat-card-actions {
+        .subtotal {
+          flex-direction: column;
         }
       }
     }
+  }
 }
-
