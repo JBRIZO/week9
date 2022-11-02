@@ -4,7 +4,7 @@ import {
   FormGroup,
   FormControl,
   Validators,
-  AbstractControl
+  AbstractControl,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../shared/authentication.service';
@@ -37,13 +37,13 @@ export class LoginComponent {
     return this.form.get('password') as AbstractControl;
   }
 
-  onSubmit() : void {
+  onSubmit(): void {
     if (this.form.valid) {
       this.login();
     }
   }
 
-  login() : void {
+  login(): void {
     this.loginError = false;
     this.loading = true;
     this.authService.login(this.form.value).subscribe(

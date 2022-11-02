@@ -9,11 +9,7 @@ import { AuthenticationService } from './shared/authentication.service';
 
 @NgModule({
   declarations: [LoginComponent],
-  imports: [
-    CommonModule,
-    LoginRoutingModule,
-    SharedModule,
-  ],
+  imports: [CommonModule, LoginRoutingModule, SharedModule],
   providers: [LoginGuard, AuthenticationService],
 })
 export class LoginModule {}

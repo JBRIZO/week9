@@ -12,9 +12,17 @@
       </mat-card-content>
       <mat-card-actions>
         <div class="subtotal">
-          <h3>Subtotal({{ (cartItems$ | async)!.length }} items):</h3>
-          <p class="price">$ {{ (cartItems$ | async)! | itemsTotal }}</p>
-          <button mat-raised-button color="primary">Proceed to Checkout</button>
+          <ng-container *ngIf="cartItems$ | async as cartItems">
+            <h3>Subtotal({{ cartItems.length }} items):</h3>
+            <p class="price">$ {{ cartItems | itemsTotal }}</p>
+            <button
+              mat-raised-button
+              color="primary"
+              [disabled]="cartItems.length === 0"
+            >
+              Proceed to Checkout
+            </button>
+          </ng-container>
         </div>
       </mat-card-actions>
     </mat-card>

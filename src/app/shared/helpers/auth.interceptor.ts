@@ -44,9 +44,7 @@ export class AuthInterceptor implements HttpInterceptor {
               this.router.navigate(['/login']);
             });
         } else {
-          errorMessage.message = this.getErrorMessage(
-            error.error.errors[0].code
-          );
+          errorMessage.message = this.getErrorMessage(error);
           this.snackbar.open(errorMessage.message, '', { duration: 4000 });
         }
         return throwError(errorMessage);
@@ -54,8 +52,9 @@ export class AuthInterceptor implements HttpInterceptor {
     );
   }
 
-  getErrorMessage(code: string): string {
-    let message = 'Unexpected error';
+  getErrorMessage(error: HttpErrorResponse): string {
+    const code = error.error.errors[0].code;
+    let message = error.error.errors[0].message;
     switch (code) {
       case '4e6f7420656e6f7567682073746f636b':
         message = 'Not enough stock.';
